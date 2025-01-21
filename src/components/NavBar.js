@@ -10,9 +10,6 @@ export default function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Link passHref href="/" className="navbar-brand">
-          CHANGE ME
-        </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -20,9 +17,18 @@ export default function NavBar() {
             <Link className="nav-link" href="/">
               Home
             </Link>
+            <Link className="nav-link" href="/booking">
+              Booking
+            </Link>
+            <Link className="nav-link" href="/booking/new">
+              Create Booking
+            </Link>
+            <Link className="nav-link" href="/event">
+              Events
+            </Link>
           </Nav>
 
-          <Button variant="danger" onClick={signOut}>
+          <Button variant="warning" onClick={signOut}>
             Sign Out THIS WILL ERROR OUT DONT USE IT
           </Button>
         </Navbar.Collapse>

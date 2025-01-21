@@ -1,4 +1,4 @@
-function Text() {
+function Text2() {
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -9,9 +9,9 @@ function Text() {
         margin: '0 auto',
       }}
     >
-      TEST TEST
+      TEST TEST EVENTS
     </div>
   );
 }
 
-export default Text;
+export default Text2;

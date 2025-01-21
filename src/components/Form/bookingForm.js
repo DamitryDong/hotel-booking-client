@@ -1,24 +1,33 @@
-import Button from 'react-bootstrap/Button';
+'use client';
+
+import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types';
 
 // TODO:
-const initialState = {};
-function bookingForm({ obj = initialState }) {
+const initialState = {
+  data: '',
+};
+function BookingForm({ obj = initialState }) {
   console.log(obj);
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">Well never share your email with anyone else.</Form.Text>
-      </Form.Group>
+        <Form.Label>Drop down cust name</Form.Label>
+        <Form.Control type="string" placeholder="TEST TEST" />
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
+        <Form.Label>Number in Party</Form.Label>
+        <Form.Control type="string" placeholder="TEST TEST TEST TEST" />
+
+        <Form.Label>Room Number</Form.Label>
+        <Form.Control type="string" placeholder="TEST TEST TEST TEST TEST TEST" />
+
+        <Form.Label>Check IN</Form.Label>
+        <Form.Control type="string" placeholder="TEST TEST TEST TEST TEST TEST TEST TEST" />
+
+        <Form.Label>Check OUT</Form.Label>
+        <Form.Control type="string" placeholder="TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST" />
+        <Form.Text>TES TESSSSS</Form.Text>
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit
@@ -27,4 +36,10 @@ function bookingForm({ obj = initialState }) {
   );
 }
 
-export default bookingForm;
+export default BookingForm;
+
+BookingForm.propTypes = {
+  obj: PropTypes.shape({
+    data: PropTypes.string,
+  }),
+};
