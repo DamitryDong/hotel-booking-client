@@ -20,7 +20,7 @@ function Home() {
       }}
     >
       {/* <h1>Hello {user.displayName}! </h1> */}
-      <h1>YOU NEED TO PUT THE NAME BACK AND ALSO FIX THE LAYOUT PAGE WHEN YOU PAST THROUGH USER FIX ALL OF THEM PLEASSSSE </h1>
+      <h1>Two THINGS need to be fix when talking to backend people: 1. PUT user back into page.js in APP remove this line for the above commented out line, 2. GO TO layout.js and put clientProvider back in and remove the temp code including the NAV. </h1>
       <p>Click the button below to logout!</p>
       <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
         Sign Out THIS WILL EROOR

@@ -1,3 +1,5 @@
+'use client';
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
@@ -8,8 +10,8 @@ export default function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Link passHref href="/" className='navbar-brand'>
-         CHANGE ME
+        <Link passHref href="/" className="navbar-brand">
+          CHANGE ME
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -21,7 +23,7 @@ export default function NavBar() {
           </Nav>
 
           <Button variant="danger" onClick={signOut}>
-              Sign Out
+            Sign Out THIS WILL ERROR OUT DONT USE IT
           </Button>
         </Navbar.Collapse>
       </Container>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@/styles/globals.css';
+import NavBar from '../components/NavBar'; // REMOVE THIS NAVBAR SINCE ITS USUALLY LOADED REGARDELSS BECAUSE OF VIEW DIRECTORY IN CONTEXT
 
 const inter = Inter({ subsets: ['latin'] });
 export default function RootLayout({ children }) {
@@ -14,7 +15,10 @@ export default function RootLayout({ children }) {
     //   </body>
     // </html>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NavBar />
+        {children}
+      </body>
     </html>
   );
 }
