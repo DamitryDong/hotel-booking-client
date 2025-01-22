@@ -1,4 +1,13 @@
+'use client';
+
+import React, { useEffect } from 'react';
+import EventCards from '@/components/EventCards';
+import { eventData } from '../../api/TempData';
+
 function Text2() {
+  useEffect(() => {
+    console.log(eventData);
+  });
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -9,7 +18,9 @@ function Text2() {
         margin: '0 auto',
       }}
     >
-      TEST TEST EVENTS
+      {eventData.map((event) => (
+        <EventCards eventObj={event} />
+      ))}
     </div>
   );
 }
