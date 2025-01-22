@@ -1,30 +1,43 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+'use client';
+
 import React from 'react';
+import { Navbar, Container, Nav, Offcanvas, Button } from 'react-bootstrap';
 import Link from 'next/link';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 
-export default function NavBar() {
+function MyNavbar() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
-        <Link passHref href="/" className='navbar-brand'>
-         CHANGE ME
-        </Link>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-            <Link className="nav-link" href="/">
-              Home
-            </Link>
-          </Nav>
-
-          <Button variant="danger" onClick={signOut}>
-              Sign Out
-          </Button>
-        </Navbar.Collapse>
+    <Navbar bg="dark" variant="dark" expand={false}>
+      <Container fluid>
+        <Navbar.Toggle aria-controls="offcanvasNavbar" />
+        <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="start">
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id="offcanvasNavbarLabel">NAV or Logo IDK</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="justify-content-start flex-grow-1 pe-3">
+              <Link className="nav-link" href="/">
+                Home
+              </Link>
+              <Link className="nav-link" href="/booking">
+                Booking
+              </Link>
+              <Link className="nav-link" href="/booking/new">
+                Create Booking
+              </Link>
+              <Link className="nav-link" href="/event">
+                Events
+              </Link>
+            </Nav>
+            <Button variant="warning" onClick={signOut}>
+              Sign Out DONT WORK ER
+            </Button>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+        <Navbar.Brand href="/">LOGO GOES HERE AND CHANGE COLOR NOT PINK</Navbar.Brand>
       </Container>
     </Navbar>
   );
 }
+
+export default MyNavbar;
