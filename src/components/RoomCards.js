@@ -1,18 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import RoomModals from '@/components/RoomCardModals';
 
 function RoomCards({ roomobj }) {
+  useEffect(() => {
+    console.log(roomobj);
+  });
   return (
-    <Card id={roomobj.id} style={{ width: '18rem' }}>
-      <Card.Header>Featured</Card.Header>
+    <Card id={roomobj.id} style={{ width: '9rem' }}>
+      <Card.Header>Room: {roomobj.room_number}</Card.Header>
       <Card.Body>
-        <Card.Title>Special title treatment</Card.Title>
-        <Card.Text>With supporting text below as a natural lead-in to additional content.</Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Card.Title>{roomobj.vacancy ? 'Vacant' : 'Occupied'}</Card.Title>
+        <RoomModals roomobj={roomobj} />
       </Card.Body>
     </Card>
   );
