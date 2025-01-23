@@ -1,17 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import RoomModals from '@/components/RoomCardModals';
 
 function RoomCards({ roomobj }) {
+  useEffect(() => {
+    console.log(roomobj);
+  });
   return (
     <Card id={roomobj.id} style={{ width: '9rem' }}>
       <Card.Header>Room: {roomobj.room_number}</Card.Header>
       <Card.Body>
         <Card.Title>{roomobj.vacancy ? 'Vacant' : 'Occupied'}</Card.Title>
-        <RoomModals />
+        <RoomModals roomobj={roomobj} />
       </Card.Body>
     </Card>
   );
