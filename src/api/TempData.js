@@ -80,4 +80,4 @@ const eventData = [
 ];
 
 export { bookingData, roomData, eventData };
-// You can call them in other places after importing and run the loops like this: const eventNames = eventData.map((event) => event.event_name);
+//  USe Them juSt like Api calls just instead of .then we just do this: const eventNames = eventData.map((event) => event.event_name);
