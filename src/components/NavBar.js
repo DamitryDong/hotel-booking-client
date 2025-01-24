@@ -1,5 +1,6 @@
 'use client';
 
+import '../styles/globals.css';
 import React from 'react';
 import { Navbar, Container, Nav, Offcanvas, Button } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
@@ -11,24 +12,26 @@ function MyNavbar() {
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
         <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="start">
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel">NAV or Logo IDK</Offcanvas.Title>
+            <Offcanvas.Title id="offcanvasNavbarLabel" style={{ paddingLeft: '15px' }}>
+              NAV or Logo IDK
+            </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-start flex-grow-1 pe-3">
-              <Button className="nav-link" href="/">
+              <Button className="nav-link custom-nav-link" href="/" data-content="Home Screen">
                 Home
               </Button>
-              <Button className="nav-link" href="/booking">
+              <Button className="nav-link custom-nav-link" href="/booking" data-content="Current Bookings">
                 Booking
               </Button>
-              <Button className="nav-link" href="/booking/new">
+              <Button className="nav-link custom-nav-link" href="/booking/new" data-content="New Booking">
                 Create Booking
               </Button>
-              <Button className="nav-link" href="/event">
+              <Button className="nav-link custom-nav-link" href="/event" data-content="Check Events">
                 Events
               </Button>
-              <Button variant="outline-danger" className="nav-link" onClick={signOut}>
-                Sign Out DONT WORK ER
+              <Button className="nav-link custom-nav-link" onClick={signOut} data-content="Sign Out">
+                Sign Out
               </Button>
             </Nav>
           </Offcanvas.Body>

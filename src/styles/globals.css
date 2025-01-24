@@ -3,8 +3,86 @@ body {
   color: white;
 }
 
-/* navbarcolor and style */
-/* --bs-bg-opacity: 1;
-    background-color: #924728;
-    box-shadow: black;
-    box-shadow: -10px 5px 5px #7c7c7c; */
+/* NAV BAR STYLING SECTION */
+/* NAV BAR STYLING SECTION */
+/* NAV BAR STYLING SECTION */
+
+.custom-nav-link {
+  position: relative;
+  color: #000000;
+  text-align: left;
+  padding: 10px 20px;
+  z-index: 10;
+}
+
+.custom-nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 8px;
+  background-color: #000000;
+  transition: width 0.5s ease, background-color 1.5s ease;
+  z-index: 0; 
+}
+
+.custom-nav-link:hover {
+  background-color: #ffffff;
+}
+
+.custom-nav-link:hover::before {
+  width: 100%;
+  background-color: #aa4716;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.custom-nav-link[data-content]:hover::after {
+  content: attr(data-content); /* This pulls the data content of the data-content attribute we put in script */
+  position: absolute;
+  color: white;
+  text-align: right; 
+  right: 15px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+}
+
+
+
+
+/* ROOM CARD STYLING SECTION */
+/* ROOM CARD STYLING SECTION */
+/* ROOM CARD STYLING SECTION */
+.roomPlanContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  padding: 40px;
+}
+
+.roomCard {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.roomCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.roomCardHeader {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: #7a3918;
+  color: #ffffff;
+  padding: 8px;
+}
+
+.roomCardBody {
+  padding: 12px;
+  text-align: center;
+}
