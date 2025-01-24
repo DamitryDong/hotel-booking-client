@@ -24,6 +24,7 @@ function RoomModals({ roomobj }) {
         <Modal.Body>{roomobj.price}</Modal.Body>
         <Modal.Body>{roomobj.good_view ? 'Beautiful View' : 'Awful View'}</Modal.Body>
         <Modal.Body>{roomobj.smoking ? 'No Smoking' : 'Smoke Away'}</Modal.Body>
+        <Modal.Body>DESCRIP GO HERE WHEN ITS MADE</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
