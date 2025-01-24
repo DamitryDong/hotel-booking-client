@@ -1,18 +1,39 @@
-body {
-  background: black;
-  color: white;
+
+/* NAV BAR STYLING SECTION */
+/* NAV BAR STYLING SECTION */
+/* NAV BAR STYLING SECTION */
+.navbar-toggler {
+  background-color: #aa4716; 
 }
 
-/* NAV BAR STYLING SECTION */
-/* NAV BAR STYLING SECTION */
-/* NAV BAR STYLING SECTION */
+.navbar-toggler:hover {
+  background-color: #f1ad8b57; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  border-color: #000000; 
+}
 
+.navbar-brand {
+  color: #fff;
+}
+
+.offcanvas-header {
+  background-color: #aa4716; 
+}
+
+.offcanvas-title {
+  color: #fff; 
+}
+
+.offcanvas-header .btn-close {
+  color: #ffffff; 
+}
+
+/* Still nav bar but this is the animation for the links */
 .custom-nav-link {
   position: relative;
   color: #000000;
   text-align: left;
   padding: 10px 20px;
-  z-index: 10;
 }
 
 .custom-nav-link::before {
@@ -22,18 +43,18 @@ body {
   left: 0;
   height: 100%;
   width: 8px;
-  background-color: #000000;
+  background-color: #aa4716;
   transition: width 0.5s ease, background-color 1.5s ease;
-  z-index: 0; 
 }
 
 .custom-nav-link:hover {
   background-color: #ffffff;
+  color: transparent;
 }
 
 .custom-nav-link:hover::before {
   width: 100%;
-  background-color: #aa4716;
+  background-color: #000000;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -41,14 +62,32 @@ body {
 .custom-nav-link[data-content]:hover::after {
   content: attr(data-content); /* This pulls the data content of the data-content attribute we put in script */
   position: absolute;
-  color: white;
-  text-align: right; 
-  right: 15px; 
-  top: 50%; 
-  transform: translateY(-50%); 
+  color: rgb(255, 255, 255);
+  text-align: right;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 
+
+/* Styling for the style sheet :)))
+⠀⠀⠀⢸⣦⡀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢸⣏⠻⣶⣤⡶⢾⡿⠁⠀⢠⣄⡀⢀⣴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣀⣼⠷⠀⠀⠁⢀⣿⠃⠀⠀⢀⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠴⣾⣯⣅⣀⠀⠀⠀⠈⢻⣦⡀⠒⠻⠿⣿⡿⠿⠓⠂⠀⠀⢀⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠉⢻⡇⣤⣾⣿⣷⣿⣿⣤⠀⠀⣿⠁⠀⠀⠀⢀⣴⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠸⣿⡿⠏⠀⢀⠀⠀⠿⣶⣤⣤⣤⣄⣀⣴⣿⡿⢻⣿⡆⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠟⠁⠀⢀⣼⠀⠀⠀⠹⣿⣟⠿⠿⠿⡿⠋⠀⠘⣿⣇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢳⣶⣶⣿⣿⣇⣀⠀⠀⠙⣿⣆⠀⠀⠀⠀⠀⠀⠛⠿⣿⣦⣤⣀⠀⠀
+⠀⠀⠀⠀⠀⠀⣹⣿⣿⣿⣿⠿⠋⠁⠀⣹⣿⠳⠀⠀⠀⠀⠀⠀⢀⣠⣽⣿⡿⠟⠃
+⠀⠀⠀⠀⠀⢰⠿⠛⠻⢿⡇⠀⠀⠀⣰⣿⠏⠀⠀⢀⠀⠀⠀⣾⣿⠟⠋⠁⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠀⠀⣰⣿⣿⣾⣿⠿⢿⣷⣀⢀⣿⡇⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⠉⠁⠀⠀⠀⠀⠙⢿⣿⣿⠇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀
+If you see this I hope you're having a great day!!⠀⠀
+*/ 
 
 
 /* ROOM CARD STYLING SECTION */

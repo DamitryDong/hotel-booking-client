@@ -7,10 +7,10 @@ import { signOut } from '../utils/auth';
 
 function MyNavbar() {
   return (
-    <Navbar bg="dark" variant="dark" expand={false}>
+    <Navbar expand={false}>
       <Container fluid>
-        <Navbar.Toggle aria-controls="offcanvasNavbar" />
-        <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="start">
+        <Navbar.Toggle />
+        <Navbar.Offcanvas placement="start">
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel" style={{ paddingLeft: '15px' }}>
               NAV or Logo IDK
@@ -36,7 +36,7 @@ function MyNavbar() {
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
-        <Navbar.Brand href="/">LOGO GOES HERE AND CHANGE COLOR NOT PINK</Navbar.Brand>
+        <Navbar.Brand>LOGO GOES HERE AND CHANGE COLOR NOT PINK</Navbar.Brand>
       </Container>
     </Navbar>
   );
