@@ -36,7 +36,6 @@ function MyNavbar() {
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
-        <Navbar.Brand>LOGO GOES HERE AND CHANGE COLOR NOT PINK</Navbar.Brand>
       </Container>
     </Navbar>
   );

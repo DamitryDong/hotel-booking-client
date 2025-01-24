@@ -2,14 +2,22 @@
 /* NAV BAR STYLING SECTION */
 /* NAV BAR STYLING SECTION */
 /* NAV BAR STYLING SECTION */
+.navbar {
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
 .navbar-toggler {
-  background-color: #aa4716; 
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px ;
+  background-color: #ffffff57; 
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.281); 
 }
 
 .navbar-toggler:hover {
-  background-color: #f1ad8b57; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  border-color: #000000; 
+  background-color: #502d1b; 
 }
 
 .navbar-brand {
@@ -17,7 +25,7 @@
 }
 
 .offcanvas-header {
-  background-color: #aa4716; 
+  background-color: #502d1b; 
 }
 
 .offcanvas-title {
@@ -43,7 +51,7 @@
   left: 0;
   height: 100%;
   width: 8px;
-  background-color: #aa4716;
+  background-color: #502d1b;
   transition: width 0.5s ease, background-color 1.5s ease;
 }
 
