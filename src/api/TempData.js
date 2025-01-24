@@ -1,6 +1,8 @@
 const bookingData = [
   {
     id: 1,
+    first_name: 'Saylor',
+    last_name: 'Twift',
     paid: true,
     number_of_party: 2,
     check_in_date: '2022-01-01',
@@ -9,6 +11,8 @@ const bookingData = [
   },
   {
     id: 2,
+    first_name: 'Bustin',
+    last_name: 'Jeiber',
     paid: false,
     number_of_party: 4,
     check_in_date: '2022-02-10',
@@ -17,6 +21,8 @@ const bookingData = [
   },
   {
     id: 3,
+    first_name: 'Relly',
+    last_name: 'Joll',
     paid: true,
     number_of_party: 1,
     check_in_date: '2022-03-20',
