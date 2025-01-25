@@ -1,6 +1,6 @@
 'use client';
 
-import '../styles/globals.css'; // Corrected path
+import '../styles/globals.css';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import RoomModals from '@/components/RoomCardModals';
