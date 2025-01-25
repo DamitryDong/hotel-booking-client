@@ -1,40 +1,44 @@
 'use client';
 
+import '../styles/globals.css';
 import React from 'react';
 import { Navbar, Container, Nav, Offcanvas, Button } from 'react-bootstrap';
-import Link from 'next/link';
 import { signOut } from '../utils/auth';
 
 function MyNavbar() {
   return (
-    <Navbar bg="dark" variant="dark" expand={false}>
+    <Navbar expand={false}>
       <Container fluid>
-        <Navbar.Toggle aria-controls="offcanvasNavbar" />
-        <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="start">
+        <Navbar.Toggle />
+        <Navbar.Offcanvas placement="start">
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel">NAV or Logo IDK</Offcanvas.Title>
+            <Offcanvas.Title id="offcanvasNavbarLabel" style={{ paddingLeft: '2px' }}>
+              <div>
+                <img src="\images/cowboy-hat-illustration-png.webp" alt="logo" style={{ height: '30px', width: 'auto' }} />
+                <strong>Navigations</strong>
+              </div>
+            </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-start flex-grow-1 pe-3">
-              <Link className="nav-link" href="/">
+              <Button className="nav-link custom-nav-link" href="/" data-content="Home Screen">
                 Home
-              </Link>
-              <Link className="nav-link" href="/booking">
+              </Button>
+              <Button className="nav-link custom-nav-link" href="/booking" data-content="Current Bookings">
                 Booking
-              </Link>
-              <Link className="nav-link" href="/booking/new">
+              </Button>
+              <Button className="nav-link custom-nav-link" href="/booking/new" data-content="New Booking">
                 Create Booking
-              </Link>
-              <Link className="nav-link" href="/event">
+              </Button>
+              <Button className="nav-link custom-nav-link" href="/event" data-content="Check Events">
                 Events
-              </Link>
+              </Button>
+              <Button className="nav-link custom-nav-link" onClick={signOut} data-content="Sign Out">
+                Sign Out
+              </Button>
             </Nav>
-            <Button variant="warning" onClick={signOut}>
-              Sign Out DONT WORK ER
-            </Button>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
-        <Navbar.Brand href="/">LOGO GOES HERE AND CHANGE COLOR NOT PINK</Navbar.Brand>
       </Container>
     </Navbar>
   );

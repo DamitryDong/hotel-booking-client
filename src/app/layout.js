@@ -1,18 +1,25 @@
-import { Inter } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 import PropTypes from 'prop-types';
 import ClientProvider from '@/utils/context/ClientProvider';
-
-// IMPORT GOOGLE 'Rye" font later
-// USE GOOGLE "Poppins" font for all other
+import AnimatedLayout from '../components/GsapAnimation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({ subsets: ['latin'], weight: ['500'] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ClientProvider>{children}</ClientProvider>
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wild West Hotels</title>
+        <link rel="icon" href="/images/WWH.png" sizes="any" />
+      </head>
+      <body className={`${inter.className} ${poppins.className}`}>
+        <ClientProvider>
+          <AnimatedLayout>{children}</AnimatedLayout>
+        </ClientProvider>
       </body>
     </html>
   );

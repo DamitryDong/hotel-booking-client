@@ -3,7 +3,7 @@
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
-import RoomCards from '@/components/RoomCards';
+import RoomPlan from '@/components/RoomCards';
 
 // TODO:
 const initialState = {
@@ -23,9 +23,7 @@ function BookingForm({ obj = initialState, cardrRoomObj }) {
         <Form.Label>Room Number</Form.Label>
         <Form.Control type="string" placeholder="TEST TEST TEST TEST TEST TEST" />
 
-        {cardrRoomObj.map((room) => (
-          <RoomCards roomobj={room} />
-        ))}
+        <RoomPlan rooms={cardrRoomObj} />
 
         <Form.Label>Check IN</Form.Label>
         <Form.Control type="string" placeholder="TEST TEST TEST TEST TEST TEST TEST TEST" />
