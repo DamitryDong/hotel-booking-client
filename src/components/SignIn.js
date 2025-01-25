@@ -18,8 +18,11 @@ function Signin() {
         height: '100vh',
       }}
     >
-      <p style={{ fontSize: '.7rem' }}>Frontend: Damitry Dong, Tyler Davenport</p>
-      <p style={{ fontSize: '.7rem' }}>Backend: Brooks West, Melissa Carter, Trevor Musto</p>
+      <p style={{ fontSize: '.7rem' }}>
+        <strong>Frontender:</strong> Damitry Dong, Tyler Davenport
+        <br />
+        <strong>Backender:</strong> Brooks West, Melissa Carter, Trevor Musto
+      </p>
       <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Welcome to our App</h2>
       <p style={{ fontSize: '1.1rem' }}>Please sign in to continue</p>
       <Button
@@ -28,7 +31,7 @@ function Signin() {
         style={{
           backgroundColor: '#7a3918',
           border: 'none',
-          padding: '12px 30px',
+          padding: '20px 30px',
           fontSize: '1.5rem',
           fontWeight: 'bold',
           borderRadius: '8px',

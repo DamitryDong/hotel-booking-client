@@ -12,8 +12,11 @@ function MyNavbar() {
         <Navbar.Toggle />
         <Navbar.Offcanvas placement="start">
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel" style={{ paddingLeft: '15px' }}>
-              NAV or Logo IDK
+            <Offcanvas.Title id="offcanvasNavbarLabel" style={{ paddingLeft: '2px' }}>
+              <div>
+                <img src="\images/cowboy-hat-illustration-png.webp" alt="logo" style={{ height: '30px', width: 'auto' }} />
+                <strong>Navigations</strong>
+              </div>
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>

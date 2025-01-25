@@ -9,6 +9,10 @@ const poppins = Poppins({ subsets: ['latin'], weight: ['500'] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Add the favicon link */}
+        <link rel="icon" href="\images/WWH.png" sizes="any" />
+      </head>
       <body className={`${inter.className} ${poppins.className}`}>
         <ClientProvider>{children}</ClientProvider>
       </body>
