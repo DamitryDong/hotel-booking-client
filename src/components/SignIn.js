@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
+import IntroduceTeam from './GsapIntro';
 
 function Signin() {
   // Hover functions since react hates these being put in directly on the return
@@ -18,10 +19,8 @@ function Signin() {
         height: '100vh',
       }}
     >
-      <p style={{ fontSize: '.7rem' }}>
-        <strong>Frontender:</strong> Damitry Dong, Tyler Davenport
-        <br />
-        <strong>Backender:</strong> Brooks West, Melissa Carter, Trevor Musto
+      <p>
+        <IntroduceTeam />
       </p>
       <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Welcome to our App</h2>
       <p style={{ fontSize: '1.1rem' }}>Please sign in to continue</p>
