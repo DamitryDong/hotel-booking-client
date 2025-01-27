@@ -25,7 +25,7 @@ function EventCards({ events }) {
   // the other one will set the active index to be the one we selected from the card. (they both interact with the images.)
   return (
     <div>
-      <h1 style={{ textAlign: 'center', fontSize: '4rem', color: 'black' }}>Upcoming Events</h1>
+      <h1 style={{ textAlign: 'center', fontSize: '5rem', color: 'black' }}>Events</h1>
       <div
         style={{
           margin: 'auto',
