@@ -12,6 +12,11 @@ function Home() {
 
   useEffect(() => {
     const tl = gsap.timeline();
+    const t2 = gsap.timeline({
+      repeat: -1,
+      yoyo: true,
+      ease: 'power1.inOut',
+    });
 
     // Start by fading in and turning the image into a circle while rotating
     tl.fromTo(
@@ -25,7 +30,7 @@ function Home() {
         opacity: 1,
         scale: 1,
         rotation: 360,
-        duration: 0.9,
+        duration: 0.5,
       },
     )
       // Animate the bounce of the image into place
@@ -49,7 +54,7 @@ function Home() {
         duration: 0.3,
       })
       .to('.image', {
-        backgroundColor: '#e8d2ac',
+        backgroundColor: '#fbe9cd',
         duration: 0.5,
         boxShadow: '0 10px 15px rgba(0, 0, 0, 0.3)',
       })
@@ -85,24 +90,46 @@ function Home() {
         {
           opacity: 0,
           position: 'absolute',
-          top: '40%',
+          top: '35%',
           left: '60%',
           x: '0%',
           y: '-99%',
-          scale: 0.5,
+          scale: 0.1,
         },
         {
           opacity: 1,
-          duration: 2,
-          ease: 'power3.out',
+          duration: 3,
+          scale: 0.5,
         },
-      )
+      );
+    // Move the sun element horizontally and rotate it back and forth during the movement, this was alot of trial and error, idk what half of it is doing but it works,
+    t2.to('.imageSun', {
+      x: '-190%', // MOVE LEFT SECTION
+      rotation: 20,
+      duration: 2,
+      yoyo: true, // this yoyo ontop of the yoy inside of t2 makes it so this 2 second effect is trigger multiple times during the t2 timelines.
+      ease: 'power1.inOut',
+    })
       .to('.imageSun', {
-        x: '-15%',
+        // rotate for left move
+        rotation: -20,
+        rotationY: 180,
         duration: 2,
         ease: 'power1.inOut',
-        repeat: -1,
+      })
+      .to('.imageSun', {
+        x: '0%', // MOVE BACK RIGHT SECTION Literally just repeat the same thing but for the opposite direction
+        rotation: 20,
+        duration: 2,
         yoyo: true,
+        ease: 'power1.inOut',
+      })
+      .to('.imageSun', {
+        // rotate for right move
+        rotationY: 0,
+        rotation: -20,
+        duration: 2,
+        ease: 'power1.inOut',
       });
   }, []);
 
