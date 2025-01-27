@@ -1,10 +1,9 @@
 'use client';
 
+import React from 'react';
 import EventCards from '@/components/EventCards';
 import { eventData } from '../../api/TempData';
 
-function Text2() {
+export default function EventPage() {
   return <EventCards events={eventData} />;
 }
-
-export default Text2;

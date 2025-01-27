@@ -10,12 +10,12 @@ function MyNavbar() {
     <Navbar expand={false}>
       <Container fluid>
         <Navbar.Toggle />
-        <Navbar.Offcanvas placement="start">
+        <Navbar.Offcanvas>
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel" style={{ paddingLeft: '2px' }}>
               <div>
                 <img src="\images/cowboy-hat-illustration-png.webp" alt="logo" style={{ height: '30px', width: 'auto' }} />
-                <strong>Navigations</strong>
+                <strong style={{ color: 'white' }}>Navigations</strong>
               </div>
             </Offcanvas.Title>
           </Offcanvas.Header>
