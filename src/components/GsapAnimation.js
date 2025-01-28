@@ -12,7 +12,7 @@ export default function AnimatedLayout({ children }) {
 
   useEffect(() => {
     const effect = gsap.context(() => {
-      gsap.fromTo(containerRef.current, { opacity: 0, filter: 'blur(10px)' }, { opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power3.out' });
+      gsap.fromTo(containerRef.current, { opacity: 0, filter: 'blur(10px)' }, { opacity: 1, filter: 'blur(0px)', duration: 1.5, ease: 'power3.out' });
     });
 
     return () => effect.revert();
