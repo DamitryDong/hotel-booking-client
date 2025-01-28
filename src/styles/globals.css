@@ -134,7 +134,14 @@ If you see this I hope you're having a great day!!⠀⠀
   text-align: center;
 }
 /* TEST TEST TEST TEST */
-/* TEST TEST TEST TEST */
-/* TEST TEST TEST TEST  HOME SCREEN */
-/* Container for the images */
-/* Container for the images */
+/* for the home screen */
+.image {
+  width: 90%; 
+  height: auto;
+  margin: auto;
+}
+
+.Hello {
+  width: 80%; 
+  margin: auto;
+}

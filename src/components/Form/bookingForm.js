@@ -6,11 +6,7 @@ import PropTypes from 'prop-types';
 import RoomPlan from '@/components/RoomCards';
 
 // TODO:
-const initialState = {
-  data: '',
-};
-function BookingForm({ obj = initialState, cardrRoomObj }) {
-  console.log(obj);
+function BookingForm({ cardrRoomObj }) {
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
