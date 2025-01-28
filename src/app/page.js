@@ -66,7 +66,7 @@ function Home() {
           opacity: 0,
         },
         {
-          y: -50,
+          y: -100,
           opacity: 1,
           duration: 1.2,
           ease: 'bounce.out',
@@ -104,7 +104,7 @@ function Home() {
       );
     // Move the sun element horizontally and rotate it back and forth during the movement, this was alot of trial and error, idk what half of it is doing but it works,
     t2.to('.imageSun', {
-      x: '-190%', // MOVE LEFT SECTION
+      x: '-180%', // MOVE LEFT SECTION
       rotation: 20,
       duration: 2,
       yoyo: true, // this yoyo ontop of the yoy inside of t2 makes it so this 2 second effect is trigger multiple times during the t2 timelines.

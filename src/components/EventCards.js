@@ -40,8 +40,10 @@ function EventCards({ events }) {
         <div
           style={{
             padding: '20px',
+            width: '22%',
             maxWidth: '350px',
             maxHeight: '750px',
+            height: 'auto',
             overflow: 'auto',
             borderRadius: '12px',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
