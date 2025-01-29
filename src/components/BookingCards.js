@@ -12,19 +12,20 @@ export default function BookingCard({ bookingObj }) {
   const cardStyles = {
     transition: 'all 0.5s ease',
     transform: hovered ? 'scale(1.05)' : 'scale(1)',
-    boxShadow: hovered ? '0 8px 16px rgba(0, 0, 0, 0.2)' : '0 4px 8px rgba(0, 0, 0, 0.1)',
+    boxShadow: hovered ? '0 8px 16px rgba(248, 240, 240, 0.2)' : '0 4px 8px rgba(0, 0, 0, 0.1)',
     backgroundColor: hovered ? '#f8f9fa' : '#fff',
     color: hovered ? '#333' : '#000',
   };
 
   const headerStyles = {
     transition: 'color 0.5s ease',
-    color: hovered ? '#555' : '#000',
+    color: hovered ? '#FFFFFF' : '#000',
+    backgroundColor: hovered ? '#7a3918' : '#7A391893',
   };
 
   const footerStyles = {
     transition: 'color 0.5s ease',
-    color: hovered ? '#777' : '#888',
+    color: hovered ? '#000' : '#888',
   };
 
   return (
