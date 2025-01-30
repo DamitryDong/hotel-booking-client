@@ -2,7 +2,7 @@ import React from 'react';
 import BookingForm from '../../../components/Form/bookingForm';
 import { roomData } from '../../../api/TempData';
 
-// create a reusable form to add/edit book and render in this view
+// Create a reusable form to add/edit booking and render in this view
 
 export default function AddBook() {
   return (
@@ -15,6 +15,7 @@ export default function AddBook() {
         margin: '0 auto',
       }}
     >
-      <Bookingform cardrRoomObj={roomData} />;
+      <BookingForm cardRoomObj={roomData} />
     </div>
   );
+}

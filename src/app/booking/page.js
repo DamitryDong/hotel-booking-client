@@ -1,47 +1,35 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import BookingCard from '../../components/BookingCards';
 import { bookingData } from '../../api/TempData';
 
 export default function BookingHome() {
   const [filteredItems, setFilteredItems] = useState(bookingData);
-  const [searchTheWord, setsearchTheWord] = useState(''); // Track the search input value
+  const [searchTheWord, setsearchTheWord] = useState('');
 
   const handleSearch = () => {
-    // Filter the bookingData based on the searchTheWord
     const filter = bookingData.filter((bookingItem) => bookingItem.last_name.toLowerCase().includes(searchTheWord.toLowerCase()));
-
     setFilteredItems(filter);
   };
 
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <Form className="d-flex">
-        <Form.Control
-          type="search"
-          placeholder="Search"
-          className="me-2"
-          aria-label="Search"
-          value={searchTheWord} // Bind the input value to searchTheWord state
-          onChange={(e) => setsearchTheWord(e.target.value)} // Update searchTheWord on input change
-        />
+    <div className="text-center d-flex flex-column align-items-center" style={{ padding: '30px' }}>
+      <Form className="d-flex mb-3" style={{ maxWidth: '400px', width: '100%' }}>
+        <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchTheWord} onChange={(e) => setsearchTheWord(e.target.value)} />
         <Button onClick={handleSearch} variant="outline-success">
           Search
         </Button>
       </Form>
-      {filteredItems.map((booking) => (
-        <BookingCard key={booking.id} bookingObj={booking} />
-      ))}
+
+      <Row className="g-3" style={{ maxWidth: '800px', width: '100%' }}>
+        {filteredItems.map((booking) => (
+          <Col key={booking.id} xs={12} sm={6}>
+            <BookingCard bookingObj={booking} />
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 }
