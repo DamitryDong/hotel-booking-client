@@ -1,5 +1,5 @@
 import React from 'react';
-import BookingForm from '../../../components/Form/bookingForm';
+import BookingForm from '../../../components/form/bookingForm';
 import { roomData } from '../../../api/TempData';
 
 // Create a reusable form to add/edit booking and render in this view
@@ -11,7 +11,7 @@ export default function AddBook() {
       style={{
         height: '90vh',
         padding: '30px',
-        maxWidth: '400px',
+        width: '90%',
         margin: '0 auto',
       }}
     >

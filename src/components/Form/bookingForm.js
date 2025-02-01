@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import RoomPlan from '@/components/RoomCards';
 
 // TODO:
-function BookingForm({ cardrRoomObj }) {
+function BookingForm({ cardRoomObj }) {
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -19,7 +19,7 @@ function BookingForm({ cardrRoomObj }) {
         <Form.Label>Room Number</Form.Label>
         <Form.Control type="string" placeholder="TEST TEST TEST TEST TEST TEST" />
 
-        <RoomPlan rooms={cardrRoomObj} />
+        <RoomPlan rooms={cardRoomObj} />
 
         <Form.Label>Check IN</Form.Label>
         <Form.Control type="string" placeholder="TEST TEST TEST TEST TEST TEST TEST TEST" />
@@ -41,7 +41,7 @@ BookingForm.propTypes = {
   obj: PropTypes.shape({
     data: PropTypes.string,
   }),
-  cardrRoomObj: PropTypes.arrayOf(
+  cardRoomObj: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
       room_number: PropTypes.number,
