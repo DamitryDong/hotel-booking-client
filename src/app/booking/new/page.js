@@ -11,7 +11,7 @@ export default function AddBook() {
       style={{
         height: '90vh',
         padding: '30px',
-        maxWidth: '400px',
+        width: '90%',
         margin: '0 auto',
       }}
     >

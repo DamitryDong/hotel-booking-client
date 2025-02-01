@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-// disable lint because gsap keep getting error IDK why.
+// Disable lint because GSAP keeps getting errors
 
 'use client';
 
@@ -12,7 +12,7 @@ export default function AnimatedLayout({ children }) {
 
   useEffect(() => {
     const effect = gsap.context(() => {
-      gsap.fromTo(containerRef.current, { opacity: 0, filter: 'blur(10px)' }, { opacity: 1, filter: 'blur(0px)', duration: 1.5, ease: 'power3.out' });
+      gsap.fromTo(containerRef.current.children, { opacity: 0, y: 20, filter: 'blur(5px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out', stagger: 0.2 });
     });
 
     return () => effect.revert();

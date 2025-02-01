@@ -145,3 +145,13 @@ If you see this I hope you're having a great day!!⠀⠀
   width: 80%; 
   margin: auto;
 }
+
+/* minor effect for the image hover */
+.eventImage {
+  max-width: 95%;
+  height: auto;
+  object-fit: cover ;
+  border-radius: 20px;
+  border: 6px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

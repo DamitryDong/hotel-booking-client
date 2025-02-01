@@ -2,12 +2,38 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
+import gsap from 'gsap';
+import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function EventCards({ events }) {
+  //GSAP EFFECT SECTION
+
+  // this is for the header (events), you can use useRef to store the specific elemtn with the REF tag (basically to target)
+  const headerRef = useRef(null);
+  const leftComponent = useRef(null);
+  const rightComponenet = useRef(null);
+  const insideleftComponent = useRef([]);
+
+  // we call the location (the const we made above and .current) and then add animations to them.
+  useEffect(() => {
+    const t1 = gsap.timeline();
+
+    t1.fromTo(headerRef.current, { opacity: 0, x: -150 }, { opacity: 1, x: 0, duration: 1, ease: 'power3.out' }).fromTo(leftComponent.current, { opacity: 0, x: -150 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' }, '-=0.3').fromTo(rightComponenet.current, { opacity: 0, x: 200 }, { opacity: 1, x: 0, duration: 1.8, ease: 'power4.out' }, '-=0.4').fromTo(insideleftComponent.current, { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out', stagger: 0.25 }, '-=0.3');
+  }, []);
+  //above GSAP EFFECT SECTION
+
+  // state for the Modal buttons
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  // state for the index of the courasel and sidebar.
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleSelect = (selectedIndex) => {
@@ -25,7 +51,9 @@ function EventCards({ events }) {
   // the other one will set the active index to be the one we selected from the card. (they both interact with the images.)
   return (
     <div>
-      <h1 style={{ textAlign: 'center', fontSize: '5rem', color: 'black' }}>Events</h1>
+      <h1 ref={headerRef} style={{ textAlign: 'center', fontSize: '5rem', color: 'black' }}>
+        Events
+      </h1>
       <div
         style={{
           margin: 'auto',
@@ -38,6 +66,7 @@ function EventCards({ events }) {
       >
         {/* Description Section */}
         <div
+          ref={leftComponent}
           style={{
             padding: '20px',
             width: '22%',
@@ -53,6 +82,7 @@ function EventCards({ events }) {
         >
           {events.map((eventObj, index) => (
             <div
+              ref={(el) => (insideleftComponent.current[index] = el)} // this is how you give each individual card a different ref (For animation)
               key={eventObj.id}
               onClick={() => handleCardClick(index)} // Update the active index on click (for the desc cards that is)
               style={{
@@ -89,7 +119,7 @@ function EventCards({ events }) {
         </div>
 
         {/* Carousel Section */}
-        <div style={{ flex: '2' }}>
+        <div ref={rightComponenet} style={{ flex: '2' }}>
           <Carousel activeIndex={activeIndex} onSelect={handleSelect}>
             {events.map((eventObj) => (
               <Carousel.Item key={eventObj.id}>
@@ -111,7 +141,27 @@ function EventCards({ events }) {
                     }}
                   >
                     {eventObj.event_name}
+
+                    <Button variant="dark" onClick={handleShow} style={{ marginLeft: '10px' }}>
+                      Expand
+                    </Button>
+
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                          Save Changes
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
                   </h3>
+
                   <p style={{ fontSize: '1.5rem', color: 'black' }}>
                     {eventObj.date} | {eventObj.time}
                   </p>
@@ -124,18 +174,7 @@ function EventCards({ events }) {
                     paddingBottom: '40px',
                   }}
                 >
-                  <img
-                    src="https://theperfectevent.com/wp-content/uploads/2020/01/Main-Scroll-2.jpg"
-                    alt={eventObj.event_name}
-                    style={{
-                      maxWidth: '95%',
-                      height: 'auto',
-                      objectFit: 'cover',
-                      borderRadius: '20px',
-                      border: '6px solid #fff',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-                    }}
-                  />
+                  <img src="https://theperfectevent.com/wp-content/uploads/2020/01/Main-Scroll-2.jpg" alt={eventObj.event_name} className="eventImage" />
                 </div>
               </Carousel.Item>
             ))}
