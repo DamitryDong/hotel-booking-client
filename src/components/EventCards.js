@@ -18,13 +18,15 @@ function EventCards({ events }) {
   const leftComponent = useRef(null);
   const rightComponenet = useRef(null);
   const insideleftComponent = useRef([]);
+  const insiderightComponent = useRef([]);
 
   // we call the location (the const we made above and .current) and then add animations to them.
   useEffect(() => {
     const t1 = gsap.timeline();
 
-    t1.fromTo(headerRef.current, { opacity: 0, x: -150 }, { opacity: 1, x: 0, duration: 1, ease: 'power3.out' }).fromTo(leftComponent.current, { opacity: 0, x: -150 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' }, '-=0.3').fromTo(rightComponenet.current, { opacity: 0, x: 200 }, { opacity: 1, x: 0, duration: 1.8, ease: 'power4.out' }, '-=0.4').fromTo(insideleftComponent.current, { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out', stagger: 0.25 }, '-=0.3');
+    t1.fromTo(rightComponenet.current, { opacity: 0.2, x: 180 }, { opacity: 1, x: 0, duration: 1, ease: 'power4.out' }).fromTo(headerRef.current, { opacity: 0, x: -150 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power4.out' }, '-=0.5').fromTo(leftComponent.current, { opacity: 0, x: -120 }, { opacity: 1, x: 0, duration: 0.9, ease: 'power4.out' }, '-=0.5').fromTo(insideleftComponent.current, { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out', stagger: 0.2 }, '-=0.5').fromTo(insiderightComponent.current, { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out', stagger: 0.2 }, '-=0.5');
   }, []);
+
   //above GSAP EFFECT SECTION
 
   // state for the Modal buttons
@@ -101,7 +103,7 @@ function EventCards({ events }) {
                 style={{
                   fontSize: '1.8rem',
                   fontWeight: 'bold',
-                  color: index === activeIndex ? 'white' : 'black', // Change text color for active
+                  color: index === activeIndex ? 'white' : 'black', //color change for the active index
                 }}
               >
                 {eventObj.event_name}
@@ -109,7 +111,7 @@ function EventCards({ events }) {
               <p
                 style={{
                   fontSize: '1.2rem',
-                  color: index === activeIndex ? 'white' : '#555', // Change text color for active
+                  color: index === activeIndex ? 'white' : '#555',
                 }}
               >
                 {eventObj.description}
@@ -121,9 +123,10 @@ function EventCards({ events }) {
         {/* Carousel Section */}
         <div ref={rightComponenet} style={{ flex: '2' }}>
           <Carousel activeIndex={activeIndex} onSelect={handleSelect}>
-            {events.map((eventObj) => (
+            {events.map((eventObj, index) => (
               <Carousel.Item key={eventObj.id}>
                 <Carousel.Caption
+                  ref={(e2) => (insiderightComponent.current[index] = e2)}
                   style={{
                     color: 'black',
                     textAlign: 'center',
