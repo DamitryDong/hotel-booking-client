@@ -5,8 +5,7 @@ import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 import RoomPlan from '@/components/RoomCards';
 
-// TODO:
-function BookingForm({ cardRoomObj }) {
+function BookingForm() {
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -19,7 +18,7 @@ function BookingForm({ cardRoomObj }) {
         <Form.Label>Room Number</Form.Label>
         <Form.Control type="string" placeholder="TEST TEST TEST TEST TEST TEST" />
 
-        <RoomPlan rooms={cardRoomObj} />
+        <RoomPlan />
 
         <Form.Label>Check IN</Form.Label>
         <Form.Control type="string" placeholder="TEST TEST TEST TEST TEST TEST TEST TEST" />
@@ -41,16 +40,4 @@ BookingForm.propTypes = {
   obj: PropTypes.shape({
     data: PropTypes.string,
   }),
-  cardRoomObj: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      room_number: PropTypes.number,
-      vacancy: PropTypes.bool,
-      room_size: PropTypes.string,
-      price: PropTypes.number,
-      good_view: PropTypes.bool,
-      smoking: PropTypes.bool,
-      booking_id: PropTypes.number,
-    }),
-  ),
 };
