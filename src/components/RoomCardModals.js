@@ -46,13 +46,16 @@ function RoomModals({ roomobj }) {
             <strong>Room Size:</strong> {roomobj.room_size}
           </p>
           <p>
-            <strong>Price:</strong> ${roomobj.price.toFixed(2)}
+            <strong>Price:</strong> ${roomobj.price}
           </p>
           <p>
             <strong>View:</strong> {roomobj.good_view ? 'Beautiful View' : 'Average View'}
           </p>
           <p>
             <strong>Smoking:</strong> {roomobj.smoking ? 'No Smoking Allowed' : 'Smoking Allowed'}
+          </p>
+          <p>
+            <strong>Rating:</strong> {roomobj.star_rating}
           </p>
         </Modal.Body>
         <Modal.Footer style={{ justifyContent: 'center' }}>
@@ -84,5 +87,6 @@ RoomModals.propTypes = {
     good_view: PropTypes.bool,
     smoking: PropTypes.bool,
     booking_id: PropTypes.number,
+    star_rating: PropTypes.number,
   }),
 };
