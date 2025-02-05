@@ -155,3 +155,25 @@ If you see this I hope you're having a great day!!⠀⠀
   border: 6px solid #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+
+/* GRID FOR THE ROOM CARDS */
+/* GRID FOR THE ROOM CARDS */
+/* GRID FOR THE ROOM CARDS */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); /* 8 columns */
+  grid-template-rows: repeat(4, 100px); /* 4 rows */
+  gap: 10px;
+  padding: 20px;
+}
+
+.grided-roomCards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
