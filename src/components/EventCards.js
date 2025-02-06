@@ -10,7 +10,7 @@ import gsap from 'gsap';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function EventCards({ events }) {
+function EventCards({ events, bookings }) {
   //GSAP EFFECT SECTION
 
   // this is for the header (events), you can use useRef to store the specific elemtn with the REF tag (basically to target)
@@ -23,7 +23,6 @@ function EventCards({ events }) {
   // we call the location (the const we made above and .current) and then add animations to them.
   useEffect(() => {
     const t1 = gsap.timeline();
-
     t1.fromTo(rightComponenet.current, { opacity: 0.2, x: 180 }, { opacity: 1, x: 0, duration: 1, ease: 'power4.out' }).fromTo(headerRef.current, { opacity: 0, x: -150 }, { opacity: 1, x: 0, duration: 0.7, ease: 'power4.out' }, '-=0.5').fromTo(leftComponent.current, { opacity: 0, x: -120 }, { opacity: 1, x: 0, duration: 0.9, ease: 'power4.out' }, '-=0.5').fromTo(insideleftComponent.current, { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out', stagger: 0.2 }, '-=0.5').fromTo(insiderightComponent.current, { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out', stagger: 0.2 }, '-=0.5');
   }, []);
 
@@ -31,9 +30,16 @@ function EventCards({ events }) {
 
   // state for the Modal buttons
   const [show, setShow] = useState(false);
+  const [activeEventId, setActiveEventId] = useState(null); //THIS STATE IS REALLY IMPORTENT
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (eventId) => {
+    setActiveEventId(eventId);
+    setShow(true);
+  };
+  const handleClose = () => {
+    setActiveEventId(null);
+    setShow(false);
+  };
 
   // state for the index of the courasel and sidebar.
   const [activeIndex, setActiveIndex] = useState(0);
@@ -145,21 +151,32 @@ function EventCards({ events }) {
                   >
                     {eventObj.event_name}
 
-                    <Button variant="dark" onClick={handleShow} style={{ marginLeft: '10px' }}>
-                      Expand
+                    <Button variant="dark" onClick={() => handleShow(eventObj.id)} style={{ marginLeft: '10px' }}>
+                      Invitees
                     </Button>
 
-                    <Modal show={show} onHide={handleClose}>
+                    <Modal show={show} onHide={handleClose} centered>
                       <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
+                        <Modal.Title className="w-100 text-center">Invited List</Modal.Title>
                       </Modal.Header>
-                      <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-                      <Modal.Footer>
+
+                      <Modal.Body>
+                        <ul className="list-unstyled text-center">
+                          {bookings
+                            .filter((booking) => booking.event === activeEventId) // we must use the usestate variable to have the right variable because just setting it to equal eventObj.id will take the previous state.
+                            .map((booking) => (
+                              <li key={booking.id} className="py-1">
+                                <strong>
+                                  Booking: {booking.id} | Party Size: {booking.number_of_party}
+                                </strong>
+                              </li>
+                            ))}
+                        </ul>
+                      </Modal.Body>
+
+                      <Modal.Footer className="justify-content-center">
                         <Button variant="secondary" onClick={handleClose}>
                           Close
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                          Save Changes
                         </Button>
                       </Modal.Footer>
                     </Modal>
@@ -177,7 +194,7 @@ function EventCards({ events }) {
                     paddingBottom: '40px',
                   }}
                 >
-                  <img src="https://theperfectevent.com/wp-content/uploads/2020/01/Main-Scroll-2.jpg" alt={eventObj.event_name} className="eventImage" />
+                  <img src={eventObj.image_url} alt={eventObj.event_name} className="eventImage" />
                 </div>
               </Carousel.Item>
             ))}
