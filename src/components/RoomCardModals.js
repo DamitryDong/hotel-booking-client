@@ -11,17 +11,7 @@ function RoomModals({ roomobj }) {
 
   return (
     <>
-      <Button
-        onClick={handleShow}
-        style={{
-          backgroundColor: '#7a3918',
-          borderColor: '#7a3918',
-          color: 'white',
-          fontWeight: 'bold',
-          padding: '0.5rem 1rem',
-          borderRadius: '8px',
-        }}
-      >
+      <Button variant="dark" className="ButtonForModal" onClick={handleShow}>
         Info
       </Button>
 

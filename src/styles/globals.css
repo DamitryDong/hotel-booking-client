@@ -97,42 +97,6 @@
 If you see this I hope you're having a great day!!⠀⠀
 */ 
 
-
-/* ROOM CARD STYLING SECTION */
-/* ROOM CARD STYLING SECTION */
-/* ROOM CARD STYLING SECTION */
-.roomPlanContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
-  padding: 40px;
-}
-
-.roomCard {
-  background-color: #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.2s;
-}
-
-.roomCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.roomCardHeader {
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-  background-color: #7a3918;
-  color: #ffffff;
-  padding: 8px;
-}
-
-.roomCardBody {
-  padding: 12px;
-  text-align: center;
-}
 /* TEST TEST TEST TEST */
 /* for the home screen */
 .image {
@@ -162,18 +126,106 @@ If you see this I hope you're having a great day!!⠀⠀
 /* GRID FOR THE ROOM CARDS */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr); /* 8 columns */
-  grid-template-rows: repeat(4, 100px); /* 4 rows */
+  grid-template-columns: repeat(8, 1fr); 
+  grid-template-rows: repeat(4, 100px); 
   gap: 10px;
   padding: 20px;
+  background-color: #f9f9f9; 
+  border-radius: 20px;
 }
 
-.grided-roomCards {
+/* ROOM CARD STYLING SECTION */
+/* ROOM CARD STYLING SECTION */
+/* ROOM CARD STYLING SECTION */
+
+/* ROOM CARD STYLING SECTION */
+.roomCard {
+  background-color: #ffffff;
+  border: 2px solid black; 
+  border-radius: 10px; 
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  width: 100%;
+  height: 100%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+/* Occupied Room Styling */
+.roomCard.occupied {
+  background-color: #0000001a; 
+  border-color: black; 
+}
+
+/* Hover Effect */
+.roomCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ADD click showing up from the room cards */
+.roomCard {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.addclick {
+  position: absolute;
+  top: 50%;
+  right: -30px; /* Initially hidden outside the card */
+  transform: translateY(-50%);
+  background-color: black;
+  color: white;
+  border-color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0; /* Start invisible */
 }
 
+.roomCard:hover .addclick  {
+  right: 10px; /* Move inside the card */
+  opacity: 1; /* Fade in */
+}
+
+/* For the Other buttin */
+
+.ButtonForModal {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(0, 0, 0);
+  border: 1.5px solid black;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; 
+  transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  font-size: 0.7rem;
+  opacity: 0;
+}
+
+.roomCard:hover .ButtonForModal {
+  top: 5%; /* Show it at the top of the card (10% space from top) */
+  opacity: 1; 
+}
+
+/* For the roomnumber div */
+
+.roomNumber {
+  position: absolute;
+  bottom: 5%; 
+  left: 10%; 
+  font-size: 1rem;
+  color: black;
+}
