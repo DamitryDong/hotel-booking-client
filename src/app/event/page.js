@@ -12,12 +12,10 @@ export default function EventPage() {
   useEffect(() => {
     getAllEvents().then((fetchedEvents) => {
       setEvents(fetchedEvents);
-      console.log(fetchedEvents);
     });
 
     getAllBookings().then((fetchedBookings) => {
       setBooking(fetchedBookings);
-      console.log(fetchedBookings);
     });
   }, []);
 
