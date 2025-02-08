@@ -11,27 +11,26 @@ function RoomModals({ roomobj }) {
 
   return (
     <>
-      <Button
-        onClick={handleShow}
-        style={{
-          backgroundColor: '#7a3918',
-          borderColor: '#7a3918',
-          color: 'white',
-          fontWeight: 'bold',
-          padding: '0.5rem 1rem',
-          borderRadius: '8px',
-        }}
-      >
+      {/* Info Button */}
+      <Button variant="light" className="ButtonForModal" onClick={handleShow}>
         Info
       </Button>
 
-      <Modal show={show} onHide={handleClose} style={{ color: 'black' }} centered size="sm">
-        <Modal.Header closeButton style={{ backgroundColor: '#7a3918', color: 'white' }}>
+      {/* Modal */}
+      <Modal show={show} onHide={handleClose} centered size="sm">
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: '#f8f9fa', // Light grayish-white
+            color: '#333', // Dark gray text
+            borderBottom: '1px solid #ccc', // Subtle divider
+          }}
+        >
           <Modal.Title>
             # {roomobj.room_number} -{' '}
             <span
               style={{
-                color: roomobj.vacancy ? '#00ff44' : '#ff2424',
+                color: roomobj.vacancy ? '#28a745' : '#dc3545', // Professional green & red
                 fontWeight: 'bold',
               }}
             >
@@ -39,9 +38,11 @@ function RoomModals({ roomobj }) {
             </span>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <h5>Details</h5>
-          <hr />
+
+        <Modal.Body style={{ backgroundColor: '#ffffff', color: '#555', borderRadius: '20px' }}>
+          <h5 style={{ fontWeight: 'bold', color: '#222' }}>Details</h5>
+          <hr style={{ borderColor: '#ddd' }} />
+
           <p>
             <strong>Room Size:</strong> {roomobj.room_size}
           </p>
@@ -55,21 +56,9 @@ function RoomModals({ roomobj }) {
             <strong>Smoking:</strong> {roomobj.smoking ? 'No Smoking Allowed' : 'Smoking Allowed'}
           </p>
           <p>
-            <strong>Rating:</strong> {roomobj.star_rating}
+            <strong>Rating:</strong> {'⭐'.repeat(roomobj.star_rating)}
           </p>
         </Modal.Body>
-        <Modal.Footer style={{ justifyContent: 'center' }}>
-          <Button
-            onClick={handleClose}
-            style={{
-              backgroundColor: '#7a3918',
-              borderColor: '#7a3918',
-              fontWeight: 'bold',
-            }}
-          >
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
