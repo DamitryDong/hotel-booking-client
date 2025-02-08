@@ -22,4 +22,34 @@ const getAllBookings = () =>
       .catch(reject);
   });
 
-export default getAllBookings;
+const createBooking = (payload) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/bookings.json`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
+
+const updateBooking = (payload) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/bookings/${payload.id}.json`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
+
+export { getAllBookings, createBooking, updateBooking };
+
+// api calls for booking, customer, customer_booking dropdown for customers (create customer form)
