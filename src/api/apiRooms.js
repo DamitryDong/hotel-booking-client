@@ -13,10 +13,9 @@ const getAllRooms = () =>
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          console.log({ data });
           resolve(Object.values(data));
         } else {
-          console.log('No data');
+          console.log('Error');
           resolve([]);
         }
       })
