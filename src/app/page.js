@@ -6,13 +6,11 @@ import '../styles/globals.css';
 import { useAuth } from '@/utils/context/authContext';
 import { useEffect } from 'react';
 import gsap from 'gsap';
-import getAllBookings from '../api/apiBookings';
 
 function Home() {
   const { user } = useAuth();
 
   useEffect(() => {
-    getAllBookings();
     const tl = gsap.timeline();
     const t2 = gsap.timeline({
       repeat: -1,
