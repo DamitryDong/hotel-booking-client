@@ -61,6 +61,7 @@ function BookingForm({ obj = initialState }) {
           <Form.Control className="number_of_party" type="number" placeholder="Enter number in party" onChange={handleChange} />
 
           <RoomPlan />
+          {/* this make roomcards with id='#' */}
 
           <Form.Label>Check-In</Form.Label>
           <Form.Control className="check_in_date" type="date" onChange={handleChange} />

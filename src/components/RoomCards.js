@@ -6,18 +6,18 @@ import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import RoomModals from '@/components/RoomCardModals';
-import getAllRooms from '../api/apiRooms';
+import { getAllRooms } from '../api/apiRooms';
 
-function RoomCards({ roomobj }) {
+function RoomCards({ roomobj, onRoomSelect }) {
   return (
     <Card id={roomobj.id} className={`roomCard ${roomobj.vacancy ? 'vacant' : 'occupied'}`}>
       <Card.Body className="roomCardBody">
         <RoomModals roomobj={roomobj} />
 
-        {/* Move room number to the bottom left */}
         <div className="roomNumber">Room: {roomobj.room_number}</div>
 
-        <Button variant="dark" className="addclick">
+        {/* Set roomobj.id when the button is clicked */}
+        <Button variant="dark" className="addclick" onClick={() => onRoomSelect(roomobj.id)}>
           +
         </Button>
       </Card.Body>
@@ -29,6 +29,13 @@ function RoomCards({ roomobj }) {
 
 function RoomPlan() {
   const [roomArray, setRoomArray] = useState([]);
+  const [selectedRoomId, setSelectedRoomId] = useState([]);
+
+  const handleRoomSelect = (id) => {
+    setSelectedRoomId((prevState) => [...prevState, id]); // Update the selected room ID when the + button is clicked
+    console.log(`Selected Room ID: ${id}`);
+    console.log(`selectedRoomId: ${selectedRoomId}`);
+  };
 
   useEffect(() => {
     getAllRooms().then((rooms) => {
@@ -59,22 +66,25 @@ function RoomPlan() {
   };
 
   return (
-    <div className="grid-container">
-      {roomArray.map((room) => {
-        const position = roomPlacement[room.id];
-        return (
-          <div
-            key={room.id}
-            className="grided-roomCards"
-            style={{
-              gridColumn: position.col,
-              gridRow: position.row,
-            }}
-          >
-            <RoomCards id={room.id} roomobj={room} />
-          </div>
-        );
-      })}
+    <div>
+      <h2> Selected Room IDs: {selectedRoomId.join(', ')} </h2>
+      <div className="grid-container">
+        {roomArray.map((room) => {
+          const position = roomPlacement[room.id];
+          return (
+            <div
+              key={room.id}
+              className="grided-roomCards"
+              style={{
+                gridColumn: position.col,
+                gridRow: position.row,
+              }}
+            >
+              <RoomCards id={room.id} roomobj={room} onRoomSelect={handleRoomSelect} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -92,4 +102,5 @@ RoomCards.propTypes = {
     smoking: PropTypes.bool,
     booking_id: PropTypes.number,
   }),
+  onRoomSelect: PropTypes.func.isRequired,
 };
