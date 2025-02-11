@@ -22,6 +22,19 @@ const getAllBookings = () =>
       .catch(reject);
   });
 
+// const getSingleBooking = (id) =>
+//   new Promise((resolve, reject) => {
+//     fetch(`${endpoint}/bookings/${id}.json`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     })
+//       .then((response) => response.json())
+//       .then((data) => resolve(data))
+//       .catch(reject);
+//   });
+
 const createBooking = (payload) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/bookings.json`, {
@@ -32,14 +45,17 @@ const createBooking = (payload) =>
       body: JSON.stringify(payload),
     })
       .then((response) => response.json())
-      .then((data) => resolve(data))
+      .then((data) => {
+        console.log(data);
+        resolve(data);
+      })
       .catch(reject);
   });
 
 const updateBooking = (payload) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/bookings/${payload.id}.json`, {
-      method: 'PATCH',
+    fetch(`${endpoint}/bookings/${payload.id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },

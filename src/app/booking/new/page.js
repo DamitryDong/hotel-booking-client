@@ -1,5 +1,5 @@
 import React from 'react';
-import BookingForm from '../../../components/Form/bookingForm';
+import BookingForm from '../../../components/form/bookingForm';
 
 // Create a reusable form to add/edit booking and render in this view
 
@@ -12,6 +12,7 @@ export default function AddBooking() {
         padding: '30px',
         width: '90%',
         margin: '0 auto',
+        alignItems: 'center',
       }}
     >
       <BookingForm />
