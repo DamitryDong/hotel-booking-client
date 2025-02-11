@@ -7,19 +7,28 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import RoomModals from '@/components/RoomCardModals';
 import { getAllRooms } from '../api/apiRooms';
+import SlideInRight from './GsapRoomsSlide';
 
-function RoomCards({ roomobj, onRoomSelect }) {
+function RoomCards({ roomobj, onRoomSelect, roomsSelected }) {
+  const isSelected = roomsSelected.includes(roomobj.id);
+
   return (
-    <Card id={roomobj.id} className={`roomCard ${roomobj.vacancy ? 'vacant' : 'occupied'}`}>
+    <Card id={roomobj.id} className={`roomCard ${isSelected ? 'selected-room' : ''} ${roomobj.vacancy ? 'vacant' : 'occupied'}`}>
       <Card.Body className="roomCardBody">
         <RoomModals roomobj={roomobj} />
 
         <div className="roomNumber">Room: {roomobj.room_number}</div>
 
         {/* Set roomobj.id when the button is clicked */}
-        <Button variant="dark" className="addclick" onClick={() => onRoomSelect(roomobj.id)}>
-          +
-        </Button>
+        {roomsSelected.includes(roomobj.id) ? (
+          <Button variant="danger" className="minusclick" onClick={() => onRoomSelect(roomobj.id)}>
+            -
+          </Button>
+        ) : (
+          <Button variant="success" className="addclick" onClick={() => onRoomSelect(roomobj.id)}>
+            +
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );
@@ -32,9 +41,12 @@ function RoomPlan() {
   const [selectedRoomId, setSelectedRoomId] = useState([]);
 
   const handleRoomSelect = (id) => {
-    setSelectedRoomId((prevState) => [...prevState, id]); // Update the selected room ID when the + button is clicked
-    console.log(`Selected Room ID: ${id}`);
-    console.log(`selectedRoomId: ${selectedRoomId}`);
+    setSelectedRoomId(
+      (prevState) =>
+        prevState.includes(id)
+          ? prevState.filter((roomId) => roomId !== id) // Remove if already selected
+          : [...prevState, id], // Add if not selected
+    );
   };
 
   useEffect(() => {
@@ -67,24 +79,27 @@ function RoomPlan() {
 
   return (
     <div>
-      <h2> Selected Room IDs: {selectedRoomId.join(', ')} </h2>
-      <div className="grid-container">
-        {roomArray.map((room) => {
-          const position = roomPlacement[room.id];
-          return (
-            <div
-              key={room.id}
-              className="grided-roomCards"
-              style={{
-                gridColumn: position.col,
-                gridRow: position.row,
-              }}
-            >
-              <RoomCards id={room.id} roomobj={room} onRoomSelect={handleRoomSelect} />
-            </div>
-          );
-        })}
-      </div>
+      <h4 className="selectedRooms"> Selected Room IDs: {selectedRoomId.join(', ')} </h4>
+
+      <SlideInRight>
+        <div className="grid-container">
+          {roomArray.map((room) => {
+            const position = roomPlacement[room.id];
+            return (
+              <div
+                key={room.id}
+                className="grided-roomCards"
+                style={{
+                  gridColumn: position.col,
+                  gridRow: position.row,
+                }}
+              >
+                <RoomCards id={room.id} roomobj={room} onRoomSelect={handleRoomSelect} roomsSelected={selectedRoomId} />
+              </div>
+            );
+          })}
+        </div>
+      </SlideInRight>
     </div>
   );
 }
@@ -103,4 +118,5 @@ RoomCards.propTypes = {
     booking_id: PropTypes.number,
   }),
   onRoomSelect: PropTypes.func.isRequired,
+  roomsSelected: PropTypes.arrayOf(PropTypes.number).isRequired,
 };

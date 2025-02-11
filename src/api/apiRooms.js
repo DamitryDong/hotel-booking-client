@@ -24,8 +24,8 @@ const getAllRooms = () =>
 
 const updateRooms = (payload) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/rooms/${payload.id}.json`, {
-      method: 'PATCH',
+    fetch(`${endpoint}/rooms/${payload.id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
