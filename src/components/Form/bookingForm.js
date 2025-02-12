@@ -32,7 +32,6 @@ const HandleSelectedRoomsComponent = (id) => {
     const extractedIds = text.match(/\d+/g)?.map(Number) || []; // Extract numbers safely
 
     extractedIds.forEach((roomId) => {
-      console.log(`room ids passed ${roomId}`);
       const payloadForRooms = {
         id: roomId,
         vacancy: false,

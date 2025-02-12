@@ -12,23 +12,30 @@ import SlideInRight from './GsapRoomsSlide';
 function RoomCards({ roomobj, onRoomSelect, roomsSelected }) {
   const isSelected = roomsSelected.includes(roomobj.id);
 
+  // Determine the button element based on the booking status and selection state
+  let button;
+  if (roomobj.booking) {
+    button = 'occupied';
+  } else if (isSelected) {
+    button = (
+      <Button variant="danger" className="minusclick" onClick={() => onRoomSelect(roomobj.id)}>
+        -
+      </Button>
+    );
+  } else {
+    button = (
+      <Button variant="success" className="addclick" onClick={() => onRoomSelect(roomobj.id)}>
+        +
+      </Button>
+    );
+  }
+
   return (
-    <Card id={roomobj.id} className={`roomCard ${isSelected ? 'selected-room' : ''} ${roomobj.vacancy ? 'vacant' : 'occupied'}`}>
+    <Card id={roomobj.id} className={`roomCard ${isSelected ? 'selected-room' : ''} ${roomobj.booking ? 'occupied' : 'vacant'}`}>
       <Card.Body className="roomCardBody">
         <RoomModals roomobj={roomobj} />
-
         <div className="roomNumber">Room: {roomobj.room_number}</div>
-
-        {/* Set roomobj.id when the button is clicked */}
-        {roomsSelected.includes(roomobj.id) ? (
-          <Button variant="danger" className="minusclick" onClick={() => onRoomSelect(roomobj.id)}>
-            -
-          </Button>
-        ) : (
-          <Button variant="success" className="addclick" onClick={() => onRoomSelect(roomobj.id)}>
-            +
-          </Button>
-        )}
+        {button}
       </Card.Body>
     </Card>
   );
@@ -116,6 +123,7 @@ RoomCards.propTypes = {
     good_view: PropTypes.bool,
     smoking: PropTypes.bool,
     booking_id: PropTypes.number,
+    booking: PropTypes.number,
   }),
   onRoomSelect: PropTypes.func.isRequired,
   roomsSelected: PropTypes.arrayOf(PropTypes.number).isRequired,
