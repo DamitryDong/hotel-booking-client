@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
@@ -6,13 +7,14 @@ import Card from 'react-bootstrap/Card';
 import BookingCardModal from './BookingCardModals';
 import { deleteBooking } from '../api/apiBookings';
 
-export default function BookingCard({ bookingObj }) {
+export default function BookingCard({ bookingObj, onDelete }) {
   const handleDelete = (BookingId) => {
     // This was really difficult to get because for some reason if a room has a booking
     // it returns the booking as another objected inside of the roomobj.
     // since we cannot make an apit call for where bookings is equal to what we want we did this.
 
     deleteBooking(BookingId).then(() => {
+      onDelete(BookingId);
       // TODO: This is no required but for some reasona the True for vacancy isn't passing.
       // getAllRooms().then((roomObj) => {
       //   const filteredRoomId = [];
@@ -62,4 +64,5 @@ BookingCard.propTypes = {
     check_out_date: PropTypes.string,
     event_id: PropTypes.number,
   }).isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
