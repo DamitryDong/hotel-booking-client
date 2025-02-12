@@ -1,13 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import BookingCard from '../../components/BookingCards';
 import { bookingData } from '../../api/TempData';
+import { getAllBookings } from '../../api/apiBookings';
 
 export default function BookingHome() {
-  const [filteredItems, setFilteredItems] = useState(bookingData);
+  const [filteredItems, setFilteredItems] = useState([]);
   const [searchTheWord, setsearchTheWord] = useState('');
+
+  useEffect(() => {
+    getAllBookings().then((bookings) => setFilteredItems(bookings));
+  }, []);
 
   const handleSearch = () => {
     const filter = bookingData.filter((bookingItem) => bookingItem.last_name.toLowerCase().includes(searchTheWord.toLowerCase()));
