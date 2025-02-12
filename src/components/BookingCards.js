@@ -1,61 +1,30 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Example from './BookingCardModals';
+import BookingCardModal from './BookingCardModals';
 
 export default function BookingCard({ bookingObj }) {
-  const [hovered, setHovered] = useState(false);
-
-  // Inline styling for hover effects
-  const cardStyles = {
-    transition: 'all 0.5s ease',
-    transform: hovered ? 'scale(1.05)' : 'scale(1)',
-    boxShadow: hovered ? '0 8px 16px rgba(248, 240, 240, 0.2)' : '0 4px 8px rgba(0, 0, 0, 0.1)',
-    backgroundColor: hovered ? '#f8f9fa' : '#fff',
-    color: hovered ? '#333' : '#000',
-  };
-
-  const headerStyles = {
-    transition: 'color 0.5s ease',
-    color: hovered ? '#FFFFFF' : '#000',
-    backgroundColor: hovered ? '#7a3918' : '#7A391893',
-  };
-
-  const footerStyles = {
-    transition: 'color 0.5s ease',
-    color: hovered ? '#000' : '#888',
-  };
+  // "paid": true,
+  //       "number_of_party": 6,
+  //       "check_in_date": "2025-01-19T15:00:00Z",
+  //       "check_out_date": "2025-07-21T12:00:00Z",
+  //       "event": 1,
+  //       "uid": "iponjVrVrvax0XoyC4KZqVVVTND2"
 
   return (
-    <Card style={cardStyles} className="text-center" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-      <Card.Header style={headerStyles}>{hovered ? `✨ Booking #${bookingObj.id}` : `Booking ${bookingObj.id}`}</Card.Header>
+    <Card className="text-center">
+      <Card.Header> Booking: {bookingObj.id}</Card.Header>
 
       <Card.Body>
-        {hovered ? (
-          <>
-            <Card.Title>Excited to welcome you, {bookingObj.first_name}!</Card.Title>
-            <Card.Text>
-              Get ready for Event {bookingObj.event_id} with your party of {bookingObj.number_of_party}.
-            </Card.Text>
-            <Button variant="success">Let's Go!</Button>
-          </>
-        ) : (
-          <>
-            <Card.Title>
-              {bookingObj.first_name} {bookingObj.last_name}
-            </Card.Title>
-            <Card.Text>
-              Party Size ({bookingObj.number_of_party}) Attending Event {bookingObj.event_id}
-            </Card.Text>
-            <Button variant="primary">Test</Button>
-          </>
-        )}
-        <Example />
+        <>
+          <Card.Title>WIP</Card.Title>
+          <Card.Text>Party Size ({bookingObj.number_of_party})</Card.Text>
+          <Button variant="danger">Delete</Button>
+        </>
+        <BookingCardModal bookingObj={bookingObj} />
       </Card.Body>
-
-      <Card.Footer style={footerStyles}>{hovered ? `You're staying from ${bookingObj.check_in_date} to ${bookingObj.check_out_date}.` : `${bookingObj.check_in_date} through ${bookingObj.check_out_date}`}</Card.Footer>
     </Card>
   );
 }
