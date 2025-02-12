@@ -22,18 +22,18 @@ const getAllBookings = () =>
       .catch(reject);
   });
 
-// const getSingleBooking = (id) =>
-//   new Promise((resolve, reject) => {
-//     fetch(`${endpoint}/bookings/${id}.json`, {
-//       method: 'GET',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//     })
-//       .then((response) => response.json())
-//       .then((data) => resolve(data))
-//       .catch(reject);
-//   });
+const getSingleBooking = (id) =>
+  new Promise((resolve, reject) => {
+   fetch(`${endpoint}/bookings/${id}.json`, {
+      method: 'GET',
+    headers: {
+       'Content-Type': 'application/json',
+     },
+     })
+      .then((response) => response.json())
+     .then((data) => resolve(data))
+     .catch(reject);
+   });
 
 const createBooking = (payload) =>
   new Promise((resolve, reject) => {
@@ -66,6 +66,19 @@ const updateBooking = (payload) =>
       .catch(reject);
   });
 
-export { getAllBookings, createBooking, updateBooking };
+const deleteBooking = (payload) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/bookings/${payload.id}.json`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
+
+export { getAllBookings, createBooking, updateBooking, getSingleBooking, deleteBooking };
 
 // api calls for booking, customer, customer_booking dropdown for customers (create customer form)
