@@ -130,7 +130,7 @@ If you see this I hope you're having a great day!!⠀⠀
   grid-template-rows: repeat(4, 100px); 
   gap: 10px;
   padding: 20px;
-  background-color: #f9f9f9; 
+  background-color: #e1e0e080; 
   border-radius: 20px;
 }
 
@@ -152,7 +152,7 @@ If you see this I hope you're having a great day!!⠀⠀
 
 /* Occupied Room Styling */
 .roomCard.occupied {
-  background-color: #0000001a; 
+  background-color: #ff00001a; 
   border-color: black; 
 }
 
@@ -173,7 +173,7 @@ If you see this I hope you're having a great day!!⠀⠀
 .addclick {
   position: absolute;
   top: 50%;
-  right: -30px; /* Initially hidden outside the card */
+  right: -30px; 
   transform: translateY(-50%);
   background-color: black;
   color: white;
@@ -188,15 +188,40 @@ If you see this I hope you're having a great day!!⠀⠀
   border-radius: 50%;
   cursor: pointer;
   transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  opacity: 0; /* Start invisible */
+  opacity: 0; 
+}
+
+.minusclick {
+  position: absolute;
+  top: 50%;
+  right: -30px; 
+  transform: translateY(-50%);
+  background-color: black;
+  color: white;
+  border-color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0; 
 }
 
 .roomCard:hover .addclick  {
-  right: 10px; /* Move inside the card */
-  opacity: 1; /* Fade in */
+  right: 10px; 
+  opacity: 1; 
 }
 
-/* For the Other buttin */
+.roomCard:hover .minusclick  {
+  right: 10px; 
+  opacity: 1; 
+}
+
 
 .ButtonForModal {
   position: absolute;
@@ -216,8 +241,12 @@ If you see this I hope you're having a great day!!⠀⠀
 }
 
 .roomCard:hover .ButtonForModal {
-  top: 5%; /* Show it at the top of the card (10% space from top) */
+  top: 5%;  
   opacity: 1; 
+}
+
+.selected-room {
+  border: 6px solid rgb(0, 0, 0) !important;
 }
 
 /* For the roomnumber div */
