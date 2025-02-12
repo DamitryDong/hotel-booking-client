@@ -24,16 +24,16 @@ const getAllBookings = () =>
 
 const getSingleBooking = (id) =>
   new Promise((resolve, reject) => {
-   fetch(`${endpoint}/bookings/${id}.json`, {
+    fetch(`${endpoint}/bookings/${id}.json`, {
       method: 'GET',
-    headers: {
-       'Content-Type': 'application/json',
-     },
-     })
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then((response) => response.json())
-     .then((data) => resolve(data))
-     .catch(reject);
-   });
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
 
 const createBooking = (payload) =>
   new Promise((resolve, reject) => {
@@ -66,16 +66,20 @@ const updateBooking = (payload) =>
       .catch(reject);
   });
 
-const deleteBooking = (payload) =>
+const deleteBooking = (id) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/bookings/${payload.id}.json`, {
+    fetch(`${endpoint}/bookings/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => response.json())
-      .then((data) => resolve(data))
+      .then((response) => {
+        if (response.ok) {
+          return response.status === 204 ? resolve({}) : response.json().then(resolve);
+        }
+        return reject(new Error(`Failed to delete booking: ${response.status}`));
+      })
       .catch(reject);
   });
 

@@ -38,34 +38,3 @@ export default function BookingHome() {
     </div>
   );
 }
-
-// set a state for books
-// const [bookings, setBookings] = useState([]);
-
-// get user id with useauth hook
-// const { user } = useAuth();
-
-// api call to get the bookings
-// const getAllTheBookings = () => {
-//   getAllTheBookings(user.uid).then(setBookings);
-// };
-
-// api call to get bookings on componet render
-// useEffect() {
-//   useEffect(() => {
-//     console.log(eventData);
-//   });
-
-// return (
-//   <div className="text-center my-4">
-//     <Link href="/booking/new" passHref>
-//       <Button>Add A Booking</Button>
-//     </Link>
-//     <div className="d-flex flex-wrap">
-//       {/* TODO: map over bookings here using BookingCard component */}
-//       {bookings.map((booking) => (
-//         <BookingCard key={booking.id} bookingObj={booking} onUpdate={getAllTheBookings} />
-//       ))}
-//     </div>
-//   </div>
-// );
