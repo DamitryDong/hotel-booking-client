@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 'use client';
 
 import '../styles/globals.css';
@@ -11,12 +9,16 @@ function Home() {
   const { user } = useAuth();
 
   useEffect(() => {
+    // Set initial background color of body to black
+    document.body.style.backgroundColor = 'black';
+
     const tl = gsap.timeline();
     const t2 = gsap.timeline({
       repeat: -1,
       yoyo: true,
       ease: 'power1.inOut',
     });
+    const t3 = gsap.timeline();
 
     // Start by fading in and turning the image into a circle while rotating
     tl.fromTo(
@@ -58,7 +60,7 @@ function Home() {
         duration: 0.5,
         boxShadow: '0 10px 15px rgba(0, 0, 0, 0.3)',
       })
-      // ad animation for the greeting to come in
+      // Add animation for the greeting to come in
       .fromTo(
         '.Hello',
         {
@@ -84,7 +86,8 @@ function Home() {
       });
 
     tl.play()
-      // lastly we add the sun thing the will fade in with absolute position
+      // Lastly we add the sun thing that will fade in with absolute position
+
       .fromTo(
         '.imageSun',
         {
@@ -102,30 +105,36 @@ function Home() {
           scale: 0.5,
         },
       );
-    // Move the sun element horizontally and rotate it back and forth during the movement, this was alot of trial and error, idk what half of it is doing but it works,
+    // Change the background color of the body once the sun animation starts
+    t3.to('body', {
+      backgroundColor: 'white',
+      duration: 0.7,
+      delay: 5.5,
+      ease: 'power1.out',
+    });
+
+    // Move the sun element horizontally and rotate it back and forth during the movement
     t2.to('.imageSun', {
       x: '-180%', // MOVE LEFT SECTION
       rotation: 20,
       duration: 2,
-      yoyo: true, // this yoyo ontop of the yoy inside of t2 makes it so this 2 second effect is trigger multiple times during the t2 timelines.
+      yoyo: true,
       ease: 'power1.inOut',
     })
       .to('.imageSun', {
-        // rotate for left move
         rotation: -20,
         rotationY: 180,
         duration: 2,
         ease: 'power1.inOut',
       })
       .to('.imageSun', {
-        x: '0%', // MOVE BACK RIGHT SECTION Literally just repeat the same thing but for the opposite direction
+        x: '0%', // MOVE BACK RIGHT SECTION
         rotation: 20,
         duration: 2,
         yoyo: true,
         ease: 'power1.inOut',
       })
       .to('.imageSun', {
-        // rotate for right move
         rotationY: 0,
         rotation: -20,
         duration: 2,

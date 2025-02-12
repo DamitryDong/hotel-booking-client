@@ -85,7 +85,8 @@ function EventCards({ events, bookings }) {
             borderRadius: '12px',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
             backgroundColor: '#f9f9f9',
-            border: '1px solid #e0e0e0',
+            border: '3px solid rgba(224, 224, 224, 0.47)',
+            scrollbarWidth: 'none',
           }}
         >
           {events.map((eventObj, index) => (
@@ -98,7 +99,7 @@ function EventCards({ events, bookings }) {
                 paddingTop: '10px',
                 paddingLeft: '10px',
                 paddingRight: '5px',
-                borderBottom: '1px solid #ddd',
+                borderBottom: '1px solid rgba(43, 3, 3, 0.47)',
                 backgroundColor: index === activeIndex ? '#7a391893' : 'transparent',
                 borderRadius: index === activeIndex ? '8px' : '0',
                 cursor: 'pointer', // Got this from Chat GPT, you can use a cursor to change the cursor when you mouse over the div, it's pretty cool.
