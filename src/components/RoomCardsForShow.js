@@ -7,16 +7,31 @@ import Card from 'react-bootstrap/Card';
 import { getAllRooms } from '../api/apiRooms';
 import SlideInRight from './GsapRoomsSlide';
 
-function RoomCards({ roomobj }) {
-  // Determine the button element based on the booking status and selection state
+function RoomCards({ roomobj, roomsToChangeColor }) {
+  const [colorOfCard, setcolorOfCard] = useState('white');
+  const [borderOfCard, setborderOfCard] = useState('');
+
+  const handleColorChange = (bookingid) => {
+    if (roomobj.booking?.id === bookingid) {
+      setcolorOfCard('rgb(35, 153, 61)');
+      setborderOfCard('4px solid black');
+    } else {
+      setcolorOfCard('white');
+      setborderOfCard('');
+    }
+  };
+
+  useEffect(() => {
+    handleColorChange(roomsToChangeColor);
+  }, [roomsToChangeColor, roomobj.booking]);
 
   return (
-    <Card id={roomobj.id} className={`${roomobj.booking ? 'occupiedForShow' : 'vacant'}`}>
+    <Card id={roomobj.id} className={`${roomobj.booking ? 'occupiedForShow' : 'vacant'}`} style={{ background: colorOfCard, border: borderOfCard }}>
       <Card.Body className="roomCardBody">
         <div className="roomNumber">Room: {roomobj.room_number}</div>
         {roomobj.booking ? (
           <div className="openClostStatusOnBookingOnRooms">
-            <strong>{roomobj.id}</strong>
+            <strong>{roomobj.booking.id}</strong>
           </div>
         ) : (
           <div className="openClostStatusOnBookingOnRooms">-</div>
@@ -28,7 +43,7 @@ function RoomCards({ roomobj }) {
 
 // DIFFERENT FUNCTIONS, we will use the aboove one here
 
-function RoomPlanForShow(onbookingDeleteTrigger) {
+function RoomPlanForShow({ onbookingDeleteTrigger, RoomToHightlight }) {
   const [roomArray, setRoomArray] = useState([]);
 
   useEffect(() => {
@@ -62,7 +77,7 @@ function RoomPlanForShow(onbookingDeleteTrigger) {
   return (
     <div>
       <SlideInRight>
-        <div className="grid-container">
+        <div className="grid-container-for-show">
           {roomArray.map((room) => {
             const position = roomPlacement[room.id];
             return (
@@ -74,7 +89,7 @@ function RoomPlanForShow(onbookingDeleteTrigger) {
                   gridRow: position.row,
                 }}
               >
-                <RoomCards id={room.id} roomobj={room} />
+                <RoomCards roomobj={room} roomsToChangeColor={RoomToHightlight} />
               </div>
             );
           })}
@@ -88,14 +103,32 @@ export default RoomPlanForShow;
 
 RoomCards.propTypes = {
   roomobj: PropTypes.shape({
-    id: PropTypes.number,
-    room_number: PropTypes.number,
-    vacancy: PropTypes.bool,
-    room_size: PropTypes.string,
-    price: PropTypes.number,
+    id: PropTypes.number.isRequired,
+    room_number: PropTypes.number.isRequired,
+    vacancy: PropTypes.bool.isRequired,
+    room_size: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     good_view: PropTypes.bool,
     smoking: PropTypes.bool,
-    booking_id: PropTypes.number,
-    booking: PropTypes.number,
-  }),
+    booking: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+  }).isRequired,
+  roomsToChangeColor: PropTypes.number.isRequired, // for the room ID to change color
+};
+
+RoomPlanForShow.propTypes = {
+  onbookingDeleteTrigger: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      room_number: PropTypes.number.isRequired,
+      vacancy: PropTypes.bool.isRequired,
+      room_size: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      good_view: PropTypes.bool,
+      smoking: PropTypes.bool,
+      booking: PropTypes.number,
+    }),
+  ).isRequired,
+  RoomToHightlight: PropTypes.number,
 };

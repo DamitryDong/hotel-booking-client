@@ -110,6 +110,7 @@ function BookingForm({ obj = initialState }) {
               min="0"
               placeholder="Enter number in party"
               onChange={handleChange}
+              required
               style={{
                 marginBottom: '15px',
                 borderColor: 'black',
@@ -122,6 +123,7 @@ function BookingForm({ obj = initialState }) {
               className="check_in_date"
               type="date"
               onChange={handleChange}
+              required
               style={{
                 marginBottom: '15px',
                 borderColor: 'black',
@@ -134,6 +136,7 @@ function BookingForm({ obj = initialState }) {
               className="check_out_date"
               type="date"
               onChange={handleChange}
+              required
               style={{
                 marginBottom: '15px',
                 borderColor: 'black',
@@ -147,6 +150,7 @@ function BookingForm({ obj = initialState }) {
               type="number"
               min="0"
               onChange={handleChange}
+              required
               style={{
                 marginBottom: '15px',
                 borderColor: 'black',

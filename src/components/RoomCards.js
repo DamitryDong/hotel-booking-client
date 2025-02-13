@@ -15,7 +15,7 @@ function RoomCards({ roomobj, onRoomSelect, roomsSelected }) {
   // Determine the button element based on the booking status and selection state
   let button;
   if (roomobj.booking) {
-    button = 'occupied';
+    button = '';
   } else if (isSelected) {
     button = (
       <Button variant="danger" className="minusclick" onClick={() => onRoomSelect(roomobj.id)}>

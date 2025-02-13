@@ -10,10 +10,11 @@ import RoomPlanForShow from '../../components/RoomCardsForShow';
 export default function BookingHome() {
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchTheWord, setsearchTheWord] = useState('');
+  const [RoomHighlighted, setRoomHighlighted] = useState(null);
   // TODO: SEARCH BAR NEEDS FIXING AFTER GETTING CUSTOMER NAMES
   useEffect(() => {
     getAllBookings().then((bookings) => setFilteredItems(bookings));
-  }, []);
+  }, [RoomHighlighted]);
 
   const handleSearch = () => {
     const filter = bookingData.filter((bookingItem) => bookingItem.last_name.toLowerCase().includes(searchTheWord.toLowerCase()));
@@ -21,6 +22,7 @@ export default function BookingHome() {
   };
 
   const handleDeleteBooking = (deletedBookingId) => {
+    console.log('Deleting booking ID:', deletedBookingId);
     setFilteredItems((prevItems) => prevItems.filter((booking) => booking.id !== deletedBookingId));
   };
 
@@ -35,19 +37,19 @@ export default function BookingHome() {
           </Button>
         </Form>
 
-        <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%', width: '90%', overflow: 'auto', height: '43vh', borderBottom: '3px solid black' }}>
-          <Row className="g-3" style={{ width: '80%' }}>
+        <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%', width: '90%', overflowX: 'auto', overflowY: 'hidden', height: '26vh' }}>
+          <Row className="g-3" style={{ display: 'flex', flexWrap: 'nowrap', width: '90%' }}>
             {filteredItems.map((booking) => (
-              <Col key={booking.id} sm={3}>
-                {/* here we set handleDeleteBooking to equal onDelete so now when we do onDelete it triggers handeleDeleteBooking */}
-                <BookingCard bookingObj={booking} onDelete={handleDeleteBooking} />
+              <Col key={booking.id} sm={3} style={{ flex: '0 0 auto' }}>
+                {/* here we set handleDeleteBooking to equal onDelete so now when we do onDelete it triggers handleDeleteBooking */}
+                <BookingCard bookingObj={booking} onDelete={handleDeleteBooking} onhighlight={setRoomHighlighted} highlightedBookingId={RoomHighlighted} />
               </Col>
             ))}
           </Row>
         </div>
 
         <div className="RoomsOnBookingInfo" style={{ width: '60%' }}>
-          <RoomPlanForShow onbookingDeleteTrigger={filteredItems} />
+          <RoomPlanForShow onbookingDeleteTrigger={filteredItems} RoomToHightlight={RoomHighlighted} />
         </div>
       </div>
     </div>
