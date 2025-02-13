@@ -26,7 +26,8 @@ export default function BookingHome() {
 
   return (
     <div>
-      <div className="text-center d-flex flex-column align-items-center">
+      <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%' }}>
+        <h2 style={{ paddingBottom: '2px', paddingTop: '2px', marginBottom: '2%', background: '#502d1b', width: '70%', borderRadius: '10px', color: 'white' }}> Bookings </h2>
         <Form className="d-flex mb-3" style={{ maxWidth: '400px', width: '100%' }}>
           <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchTheWord} onChange={(e) => setsearchTheWord(e.target.value)} />
           <Button onClick={handleSearch} variant="outline-success">
@@ -34,10 +35,10 @@ export default function BookingHome() {
           </Button>
         </Form>
 
-        <div>
-          <Row className="g-3" style={{ maxWidth: '800px', width: '100%' }}>
+        <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%', width: '90%', overflow: 'auto', height: '43vh', borderBottom: '3px solid black' }}>
+          <Row className="g-3" style={{ width: '80%' }}>
             {filteredItems.map((booking) => (
-              <Col key={booking.id} xs={12} sm={6}>
+              <Col key={booking.id} sm={3}>
                 {/* here we set handleDeleteBooking to equal onDelete so now when we do onDelete it triggers handeleDeleteBooking */}
                 <BookingCard bookingObj={booking} onDelete={handleDeleteBooking} />
               </Col>
@@ -46,7 +47,7 @@ export default function BookingHome() {
         </div>
 
         <div className="RoomsOnBookingInfo" style={{ width: '60%' }}>
-          <RoomPlanForShow />
+          <RoomPlanForShow onbookingDeleteTrigger={filteredItems} />
         </div>
       </div>
     </div>

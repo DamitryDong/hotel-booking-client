@@ -156,6 +156,17 @@ If you see this I hope you're having a great day!!⠀⠀
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+.occupied{
+  background-color: #9c0a0a93; 
+  border-color: black; 
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.occupiedForShow {
+  border-color: black; 
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+}
+
 /* Hover Effect */
 .roomCard:hover {
   transform: translateY(-3px);
@@ -257,4 +268,12 @@ If you see this I hope you're having a great day!!⠀⠀
   left: 10%; 
   font-size: 1rem;
   color: black;
+}
+
+.openClostStatusOnBookingOnRooms {
+  top: 5%; 
+  right: 10%; 
+  font-size: 1rem;
+  color: black;
+  padding: 30%;
 }

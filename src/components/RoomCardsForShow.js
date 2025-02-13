@@ -4,7 +4,6 @@ import '../styles/globals.css';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-import RoomModals from '@/components/RoomCardModals';
 import { getAllRooms } from '../api/apiRooms';
 import SlideInRight from './GsapRoomsSlide';
 
@@ -12,10 +11,16 @@ function RoomCards({ roomobj }) {
   // Determine the button element based on the booking status and selection state
 
   return (
-    <Card id={roomobj.id} className={`${roomobj.booking ? 'occupied' : 'vacant'}`}>
+    <Card id={roomobj.id} className={`${roomobj.booking ? 'occupiedForShow' : 'vacant'}`}>
       <Card.Body className="roomCardBody">
-        <RoomModals roomobj={roomobj} />
         <div className="roomNumber">Room: {roomobj.room_number}</div>
+        {roomobj.booking ? (
+          <div className="openClostStatusOnBookingOnRooms">
+            <strong>{roomobj.id}</strong>
+          </div>
+        ) : (
+          <div className="openClostStatusOnBookingOnRooms">-</div>
+        )}
       </Card.Body>
     </Card>
   );
@@ -23,14 +28,14 @@ function RoomCards({ roomobj }) {
 
 // DIFFERENT FUNCTIONS, we will use the aboove one here
 
-function RoomPlanForShow() {
+function RoomPlanForShow(onbookingDeleteTrigger) {
   const [roomArray, setRoomArray] = useState([]);
 
   useEffect(() => {
     getAllRooms().then((rooms) => {
       setRoomArray(rooms);
     });
-  }, []);
+  }, [onbookingDeleteTrigger]);
 
   // Manually define grid placement for each room
   const roomPlacement = {
