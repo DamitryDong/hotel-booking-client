@@ -87,7 +87,7 @@ function BookingForm({ obj = initialState }) {
             className="text-white mt-5"
             style={{
               marginBottom: '5%',
-              backgroundColor: 'black',
+              backgroundColor: '#502d1b',
               padding: '10px 20px',
               borderRadius: '8px',
               fontSize: '1.5rem',
