@@ -34,10 +34,10 @@ export default function BookingHome() {
           </Button>
         </Form>
 
-        <div style={{ marginBottom: '2%' }}>
-          <Row className="g-3" style={{ maxWidth: '800px', width: '100%' }}>
+        <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%', width: '90%', maxHeight: '30%' }}>
+          <Row className="g-3" style={{ width: '90%' }}>
             {filteredItems.map((booking) => (
-              <Col key={booking.id} xs={12} sm={6}>
+              <Col key={booking.id} sm={3}>
                 {/* here we set handleDeleteBooking to equal onDelete so now when we do onDelete it triggers handeleDeleteBooking */}
                 <BookingCard bookingObj={booking} onDelete={handleDeleteBooking} />
               </Col>
