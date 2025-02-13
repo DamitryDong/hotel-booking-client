@@ -26,7 +26,7 @@ export default function BookingHome() {
 
   return (
     <div>
-      <div className="text-center d-flex flex-column align-items-center">
+      <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%' }}>
         <Form className="d-flex mb-3" style={{ maxWidth: '400px', width: '100%' }}>
           <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchTheWord} onChange={(e) => setsearchTheWord(e.target.value)} />
           <Button onClick={handleSearch} variant="outline-success">
@@ -34,7 +34,7 @@ export default function BookingHome() {
           </Button>
         </Form>
 
-        <div>
+        <div style={{ marginBottom: '2%' }}>
           <Row className="g-3" style={{ maxWidth: '800px', width: '100%' }}>
             {filteredItems.map((booking) => (
               <Col key={booking.id} xs={12} sm={6}>
@@ -46,7 +46,7 @@ export default function BookingHome() {
         </div>
 
         <div className="RoomsOnBookingInfo" style={{ width: '60%' }}>
-          <RoomPlanForShow />
+          <RoomPlanForShow onbookingDeleteTrigger={filteredItems} />
         </div>
       </div>
     </div>
