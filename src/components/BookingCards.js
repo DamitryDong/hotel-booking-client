@@ -16,9 +16,24 @@ export default function BookingCard({ bookingObj, customerObj, JoinedObj, onDele
     });
   };
 
+  // this will pull the data from the join table together with the cust and booking data
   const showcuseTEST = () => {
-    console.log(customerObj);
-    console.log(JoinedObj);
+    const custArrayWithBookingId = [];
+    const shownCustomerArray = [];
+
+    JoinedObj.forEach((joinedSec) => {
+      if (joinedSec.booking === bookingObj.id) {
+        custArrayWithBookingId.push(joinedSec.customer); // we push the customer with the booking id attatched into an array.
+      }
+    });
+
+    customerObj.forEach((customer) => {
+      if (customer.id === custArrayWithBookingId) {
+        shownCustomerArray.push(customer.first_name);
+      }
+    });
+
+    return custArrayWithBookingId;
   };
 
   return (
