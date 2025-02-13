@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -8,6 +8,9 @@ import BookingCardModal from './BookingCardModals';
 import { deleteBooking } from '../api/apiBookings';
 
 export default function BookingCard({ bookingObj, customerObj, JoinedObj, onDelete, onhighlight, highlightedBookingId }) {
+  const [shownName1, setShownName1] = useState();
+  const [shownName2, setShownName2] = useState();
+
   const isHighlighted = bookingObj.id === highlightedBookingId;
 
   const handleDelete = (BookingId) => {
@@ -17,9 +20,8 @@ export default function BookingCard({ bookingObj, customerObj, JoinedObj, onDele
   };
 
   // this will pull the data from the join table together with the cust and booking data
-  const showcuseTEST = () => {
+  const DisplayNames = () => {
     const custArrayWithBookingId = [];
-    const shownCustomerArray = [];
 
     JoinedObj.forEach((joinedSec) => {
       if (joinedSec.booking === bookingObj.id) {
@@ -27,14 +29,22 @@ export default function BookingCard({ bookingObj, customerObj, JoinedObj, onDele
       }
     });
 
+    const firstCust = custArrayWithBookingId[0];
+    const secondCust = custArrayWithBookingId[1];
+
     customerObj.forEach((customer) => {
-      if (customer.id === custArrayWithBookingId) {
-        shownCustomerArray.push(customer.first_name);
+      if (customer.id === firstCust) {
+        setShownName1(`${customer.first_name} ${customer.last_name}`);
+      }
+      if (customer.id === secondCust) {
+        setShownName2(`${customer.first_name} ${customer.last_name}`);
       }
     });
-
-    return custArrayWithBookingId;
   };
+
+  useEffect(() => {
+    DisplayNames();
+  }, [customerObj]);
 
   return (
     <Card
@@ -56,13 +66,12 @@ export default function BookingCard({ bookingObj, customerObj, JoinedObj, onDele
 
       <Card.Body style={{ backgroundColor: isHighlighted ? 'transparent' : 'white' }}>
         <>
-          <Card.Title>WIP</Card.Title>
+          <Card.Title>
+            {shownName1} <br /> {shownName2}
+          </Card.Title>
           <Card.Text>Party Size ({bookingObj.number_of_party})</Card.Text>
           <Button onClick={() => handleDelete(bookingObj.id)} variant="danger">
             Delete
-          </Button>
-          <Button onClick={() => showcuseTEST()} variant="danger">
-            TEST CUST
           </Button>
         </>
         <BookingCardModal bookingObj={bookingObj} />
