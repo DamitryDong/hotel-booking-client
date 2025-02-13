@@ -9,7 +9,7 @@ import { getAllBookings } from '../../api/apiBookings';
 export default function BookingHome() {
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchTheWord, setsearchTheWord] = useState('');
-
+  // TODO: SEARCH BAR NEEDS FIXING AFTER GETTING CUSTOMER NAMES
   useEffect(() => {
     getAllBookings().then((bookings) => setFilteredItems(bookings));
   }, []);
@@ -17,6 +17,10 @@ export default function BookingHome() {
   const handleSearch = () => {
     const filter = bookingData.filter((bookingItem) => bookingItem.last_name.toLowerCase().includes(searchTheWord.toLowerCase()));
     setFilteredItems(filter);
+  };
+
+  const handleDeleteBooking = (deletedBookingId) => {
+    setFilteredItems((prevItems) => prevItems.filter((booking) => booking.id !== deletedBookingId));
   };
 
   return (
@@ -31,41 +35,11 @@ export default function BookingHome() {
       <Row className="g-3" style={{ maxWidth: '800px', width: '100%' }}>
         {filteredItems.map((booking) => (
           <Col key={booking.id} xs={12} sm={6}>
-            <BookingCard bookingObj={booking} />
+            {/* here we set handleDeleteBooking to equal onDelete so now when we do onDelete it triggers handeleDeleteBooking */}
+            <BookingCard bookingObj={booking} onDelete={handleDeleteBooking} />
           </Col>
         ))}
       </Row>
     </div>
   );
 }
-
-// set a state for books
-// const [bookings, setBookings] = useState([]);
-
-// get user id with useauth hook
-// const { user } = useAuth();
-
-// api call to get the bookings
-// const getAllTheBookings = () => {
-//   getAllTheBookings(user.uid).then(setBookings);
-// };
-
-// api call to get bookings on componet render
-// useEffect() {
-//   useEffect(() => {
-//     console.log(eventData);
-//   });
-
-// return (
-//   <div className="text-center my-4">
-//     <Link href="/booking/new" passHref>
-//       <Button>Add A Booking</Button>
-//     </Link>
-//     <div className="d-flex flex-wrap">
-//       {/* TODO: map over bookings here using BookingCard component */}
-//       {bookings.map((booking) => (
-//         <BookingCard key={booking.id} bookingObj={booking} onUpdate={getAllTheBookings} />
-//       ))}
-//     </div>
-//   </div>
-// );
