@@ -11,6 +11,7 @@ import RoomPlan from '@/components/RoomCards'; // Custom components
 
 import { updateRooms } from '../../api/apiRooms';
 import { createBooking } from '../../api/apiBookings'; // API functions
+import { createCustomer } from '../../api/apiCustomers';
 import { useAuth } from '../../utils/context/authContext'; // Context providers
 import SlideInRight from '../GsapRoomsSlide';
 
@@ -69,18 +70,35 @@ function BookingForm({ obj = initialState }) {
         uid: user.uid,
       };
 
-      createBooking(payload)
-        .then(({ id }) => {
-          console.log(id);
+      const payloadCust = {
+        paid: formInput.paid,
+        first_name: e.target.querySelector('.first_name').value,
+        last_name: e.target.querySelector('.last_name').value,
+      };
 
+      createCustomer(payloadCust)
+        .then(() => createBooking(payload))
+        .then(({ id }) => {
           HandleSelectedRoomsComponent(id);
+          router.push('/booking');
         })
-        .then(router.push('/booking'));
+        .catch((error) => console.error('Error creating payload or customer:', error));
     }
   };
 
   return (
-    <div style={{ padding: '20px', marginTop: '20%', width: '80%' }}>
+    <div
+      style={{
+        padding: '40px',
+        marginTop: '20%',
+        width: '90%',
+        backgroundColor: '#f4f4f4',
+        borderRadius: '12px',
+        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <SlideInRight delayDur={0.3}>
         <Form onSubmit={handleSubmit} className="text-black">
           <h1
@@ -101,6 +119,39 @@ function BookingForm({ obj = initialState }) {
           <Form.Group className="mb-3">
             <div style={{ marginBottom: '20px' }}>
               <RoomPlan />
+            </div>
+
+            <div className="text-center d-flex flex-row align-items-center" style={{ marginTop: '4%', marginBottom: '2%' }}>
+              <Form.Label style={{ marginBottom: '8px', width: '20%', marginRight: '5px' }}>First Name</Form.Label>
+              <Form.Control
+                className="first_name"
+                type="string"
+                min="0"
+                placeholder="John"
+                onChange={handleChange}
+                required
+                style={{
+                  marginBottom: '15px',
+                  marginRight: '3%',
+                  borderColor: 'black',
+                  borderWidth: '2px',
+                }}
+              />
+
+              <Form.Label style={{ marginBottom: '8px', width: '20%', marginRight: '5px' }}>Last Name</Form.Label>
+              <Form.Control
+                className="last_name"
+                type="string"
+                min="0"
+                placeholder="Smith"
+                onChange={handleChange}
+                required
+                style={{
+                  marginBottom: '15px',
+                  borderColor: 'black',
+                  borderWidth: '2px',
+                }}
+              />
             </div>
 
             <Form.Label style={{ marginBottom: '8px' }}>Number in Party</Form.Label>

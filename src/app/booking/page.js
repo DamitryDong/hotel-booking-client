@@ -3,21 +3,27 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import BookingCard from '../../components/BookingCards';
-import { bookingData } from '../../api/TempData';
+
 import { getAllBookings } from '../../api/apiBookings';
+import { getAllCustomers } from '../../api/apiCustomers';
 import RoomPlanForShow from '../../components/RoomCardsForShow';
+import { getAllCustomerJoinBookings } from '../../api/apiCBjointable';
 
 export default function BookingHome() {
   const [filteredItems, setFilteredItems] = useState([]);
-  const [searchTheWord, setsearchTheWord] = useState('');
+  const [customerItems, setCustomerItems] = useState([]);
+  const [customerBookingItem, setcustomerBookingItem] = useState([]);
+  const [searchTheWord, setsearchTheWord] = useState();
   const [RoomHighlighted, setRoomHighlighted] = useState(null);
-  // TODO: SEARCH BAR NEEDS FIXING AFTER GETTING CUSTOMER NAMES
+
   useEffect(() => {
     getAllBookings().then((bookings) => setFilteredItems(bookings));
-  }, [RoomHighlighted]);
+    getAllCustomers().then((customers) => setCustomerItems(customers));
+    getAllCustomerJoinBookings().then((joinedBooking) => setcustomerBookingItem(joinedBooking));
+  }, []);
 
   const handleSearch = () => {
-    const filter = bookingData.filter((bookingItem) => bookingItem.last_name.toLowerCase().includes(searchTheWord.toLowerCase()));
+    const filter = filteredItems.filter((bookingItem) => bookingItem.room_size.includes(searchTheWord.toLowerCase()));
     setFilteredItems(filter);
   };
 
@@ -37,12 +43,12 @@ export default function BookingHome() {
           </Button>
         </Form>
 
-        <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%', width: '90%', overflowX: 'auto', overflowY: 'hidden', height: '26vh' }}>
+        <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%', width: '90%', overflowX: 'auto', overflowY: 'hidden', height: '26vh', backgroundColor: 'rgba(0, 0, 0, 0.11)' }}>
           <Row className="g-3" style={{ display: 'flex', flexWrap: 'nowrap', width: '90%' }}>
             {filteredItems.map((booking) => (
               <Col key={booking.id} sm={3} style={{ flex: '0 0 auto' }}>
                 {/* here we set handleDeleteBooking to equal onDelete so now when we do onDelete it triggers handleDeleteBooking */}
-                <BookingCard bookingObj={booking} onDelete={handleDeleteBooking} onhighlight={setRoomHighlighted} highlightedBookingId={RoomHighlighted} />
+                <BookingCard bookingObj={booking} customerObj={customerItems} JoinedObj={customerBookingItem} onDelete={handleDeleteBooking} onhighlight={setRoomHighlighted} highlightedBookingId={RoomHighlighted} />
               </Col>
             ))}
           </Row>

@@ -7,13 +7,18 @@ import Card from 'react-bootstrap/Card';
 import BookingCardModal from './BookingCardModals';
 import { deleteBooking } from '../api/apiBookings';
 
-export default function BookingCard({ bookingObj, onDelete, onhighlight, highlightedBookingId }) {
+export default function BookingCard({ bookingObj, customerObj, JoinedObj, onDelete, onhighlight, highlightedBookingId }) {
   const isHighlighted = bookingObj.id === highlightedBookingId;
 
   const handleDelete = (BookingId) => {
     deleteBooking(BookingId).then(() => {
       onDelete(BookingId);
     });
+  };
+
+  const showcuseTEST = () => {
+    console.log(customerObj);
+    console.log(JoinedObj);
   };
 
   return (
@@ -34,12 +39,15 @@ export default function BookingCard({ bookingObj, onDelete, onhighlight, highlig
     >
       <Card.Header style={{ color: 'white', background: isHighlighted ? 'black' : '#7a391893' }}> Booking: {bookingObj.id}</Card.Header>
 
-      <Card.Body>
+      <Card.Body style={{ backgroundColor: isHighlighted ? 'transparent' : 'white' }}>
         <>
           <Card.Title>WIP</Card.Title>
           <Card.Text>Party Size ({bookingObj.number_of_party})</Card.Text>
           <Button onClick={() => handleDelete(bookingObj.id)} variant="danger">
             Delete
+          </Button>
+          <Button onClick={() => showcuseTEST()} variant="danger">
+            TEST CUST
           </Button>
         </>
         <BookingCardModal bookingObj={bookingObj} />
@@ -49,9 +57,19 @@ export default function BookingCard({ bookingObj, onDelete, onhighlight, highlig
 }
 
 BookingCard.propTypes = {
+  JoinedObj: PropTypes.arrayOf(
+    PropTypes.shape({
+      first_name: PropTypes.string.isRequired,
+      last_name: PropTypes.string.isRequired,
+    }),
+  ),
+  customerObj: PropTypes.arrayOf(
+    PropTypes.shape({
+      booking: PropTypes.number.isRequired,
+      customer: PropTypes.number.isRequired,
+    }),
+  ),
   bookingObj: PropTypes.shape({
-    first_name: PropTypes.string,
-    last_name: PropTypes.string,
     id: PropTypes.number,
     paid: PropTypes.bool,
     number_of_party: PropTypes.number,
