@@ -59,7 +59,7 @@ function EventCards({ events, bookings }) {
   // the other one will set the active index to be the one we selected from the card. (they both interact with the images.)
   return (
     <div>
-      <h1 ref={headerRef} style={{ textAlign: 'center', fontSize: '5rem', color: 'black' }}>
+      <h1 ref={headerRef} style={{ textAlign: 'center', fontSize: '5rem', color: 'white', borderRadius: '10px', backgroundColor: 'black', width: '70%', marginLeft: '15%' }}>
         Events
       </h1>
       <div
@@ -79,8 +79,7 @@ function EventCards({ events, bookings }) {
             padding: '20px',
             width: '22%',
             maxWidth: '350px',
-            maxHeight: '750px',
-            height: 'auto',
+            height: '80vh',
             overflow: 'auto',
             borderRadius: '12px',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
