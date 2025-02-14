@@ -112,7 +112,7 @@ If you see this I hope you're having a great day!!⠀⠀
 
 /* minor effect for the image hover */
 .eventImage {
-  width: 85%;
+  width: 90%;
   height: 80vh;
   object-fit: cover ;
   border: 2px solid rgba(0, 0, 0, 0.329);
@@ -122,7 +122,7 @@ If you see this I hope you're having a great day!!⠀⠀
 
 /* GRID FOR THE ROOM CARDS */
 /* GRID FOR THE ROOM CARDS */
-/* GRID FOR THE ROOM CARDS */
+/* GRID FOR THE ROOM CARDS and the forshow on bookings*/
 .grid-container {
   display: grid;
   grid-template-columns: repeat(8, 1fr); 
@@ -130,6 +130,16 @@ If you see this I hope you're having a great day!!⠀⠀
   gap: 10px;
   padding: 20px;
   background-color: #e1e0e080; 
+  border-radius: 20px;
+}
+
+.grid-container-for-show{
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  grid-template-rows: repeat(4, 100px); 
+  gap: 10px;
+  padding: 20px;
+  background-color: #8d330655; 
   border-radius: 20px;
 }
 
@@ -276,4 +286,26 @@ If you see this I hope you're having a great day!!⠀⠀
   font-size: 1rem;
   color: black;
   padding: 30%;
+}
+
+/* SCROLL BAR MANIPULATION */
+/* This is completely new to me and i got this from ChatGPT */
+
+.text-center.d-flex::-webkit-scrollbar {
+  width: 10px; /* Scrollbar width */
+  height: 10px; /* Scrollbar height (for horizontal scrollbar) */
+}
+
+.text-center.d-flex::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Background color of the track */
+}
+
+.text-center.d-flex::-webkit-scrollbar-thumb {
+  background-color: #502d1b; /* Color of the draggable part */
+  border-radius: 10px; /* Rounded corners */
+  border: 2px solid #f0f0f0; /* Border around the thumb */
+}
+
+.text-center.d-flex::-webkit-scrollbar-thumb:hover {
+  background-color: #348a48; /* Hover effect */
 }

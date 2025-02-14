@@ -11,6 +11,8 @@ import RoomPlan from '@/components/RoomCards'; // Custom components
 
 import { updateRooms } from '../../api/apiRooms';
 import { createBooking } from '../../api/apiBookings'; // API functions
+import { createCustomer } from '../../api/apiCustomers';
+import { createCustomerJoinBookings } from '../../api/apiCBjointable';
 import { useAuth } from '../../utils/context/authContext'; // Context providers
 import SlideInRight from '../GsapRoomsSlide';
 
@@ -57,30 +59,84 @@ function BookingForm({ obj = initialState }) {
     }));
   };
 
+  // THIS HANDLE SUBMIT TOOK ME A VERY LONG TIME PLEASE APPRECIATE
+  // it ensures that 2 customer-booking is created (join table)
+  // it also ensures that 2 customers are created.
   const handleSubmit = (e) => {
     e.preventDefault();
-    {
-      const payload = {
-        paid: formInput.paid,
-        number_of_party: e.target.querySelector('.number_of_party').value,
-        check_in_date: e.target.querySelector('.check_in_date').value,
-        check_out_date: e.target.querySelector('.check_out_date').value,
-        event: e.target.querySelector('.event').value,
-        uid: user.uid,
-      };
 
-      createBooking(payload)
-        .then(({ id }) => {
-          console.log(id);
+    const payload = {
+      paid: formInput.paid,
+      number_of_party: e.target.querySelector('.number_of_party').value,
+      check_in_date: e.target.querySelector('.check_in_date').value,
+      check_out_date: e.target.querySelector('.check_out_date').value,
+      event: e.target.querySelector('.event').value,
+      uid: user.uid,
+    };
 
-          HandleSelectedRoomsComponent(id);
-        })
-        .then(router.push('/booking'));
-    }
+    const payloadCust = {
+      paid: formInput.paid,
+      first_name: e.target.querySelector('.first_name').value,
+      last_name: e.target.querySelector('.last_name').value,
+    };
+
+    const payloadRefCust = {
+      paid: formInput.paid,
+      first_name: e.target.querySelector('.first_ref_name').value,
+      last_name: e.target.querySelector('.last_ref_name').value,
+    };
+
+    // variables use to capture both id so we can make a payload.
+    let customerId;
+    let refcustomerId;
+    let bookingId;
+
+    // complicated .then to run everything in order
+    createCustomer(payloadRefCust)
+      .then((createdCustomer) => {
+        refcustomerId = createdCustomer.id;
+      })
+      .then(() => {
+        createCustomer(payloadCust)
+          .then((createdCustomer) => {
+            customerId = createdCustomer.id; // Capture generated customer ID
+            return createBooking(payload);
+          })
+          .then((createdBooking) => {
+            bookingId = createdBooking.id; // Capture generated booking ID
+            HandleSelectedRoomsComponent(bookingId);
+            // Now that we have both IDs, create the customer-booking relation
+            const joinPayload = {
+              customer_id: customerId,
+              booking_id: bookingId,
+            };
+
+            const joinRefPayload = {
+              customer_id: refcustomerId,
+              booking_id: bookingId,
+            };
+            return Promise.all([createCustomerJoinBookings(joinPayload), createCustomerJoinBookings(joinRefPayload)]);
+          })
+          .then(() => {
+            router.push('/booking');
+          })
+          .catch((error) => console.error('Error in booking process:', error));
+      });
   };
 
   return (
-    <div style={{ padding: '20px', marginTop: '20%', width: '80%' }}>
+    <div
+      style={{
+        padding: '40px',
+        marginTop: '20%',
+        width: '90%',
+        backgroundColor: '#f4f4f4',
+        borderRadius: '12px',
+        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <SlideInRight delayDur={0.3}>
         <Form onSubmit={handleSubmit} className="text-black">
           <h1
@@ -103,6 +159,72 @@ function BookingForm({ obj = initialState }) {
               <RoomPlan />
             </div>
 
+            <div className="text-center d-flex flex-row align-items-center" style={{ marginTop: '4%', marginBottom: '2%' }}>
+              <Form.Label style={{ marginBottom: '8px', width: '20%', marginRight: '5px' }}>First Name</Form.Label>
+              <Form.Control
+                className="first_name"
+                type="string"
+                min="0"
+                placeholder="John"
+                onChange={handleChange}
+                required
+                style={{
+                  marginBottom: '15px',
+                  marginRight: '3%',
+                  borderColor: 'black',
+                  borderWidth: '2px',
+                }}
+              />
+
+              <Form.Label style={{ marginBottom: '8px', width: '20%', marginRight: '5px' }}>Last Name</Form.Label>
+              <Form.Control
+                className="last_name"
+                type="string"
+                min="0"
+                placeholder="Smith"
+                onChange={handleChange}
+                required
+                style={{
+                  marginBottom: '15px',
+                  borderColor: 'black',
+                  borderWidth: '2px',
+                }}
+              />
+            </div>
+
+            <div className="text-center d-flex flex-row align-items-center" style={{ marginTop: '1%', marginBottom: '2%' }}>
+              <Form.Label style={{ marginBottom: '8px', width: '20%', marginRight: '5px' }}>Ref FName</Form.Label>
+              <Form.Control
+                className="first_ref_name"
+                type="string"
+                min="0"
+                placeholder="Cindy"
+                onChange={handleChange}
+                required
+                style={{
+                  marginBottom: '15px',
+                  marginRight: '3%',
+                  borderColor: 'black',
+                  borderWidth: '2px',
+                }}
+              />
+
+              <Form.Label style={{ marginBottom: '8px', width: '20%', marginRight: '5px' }}>Ref LName</Form.Label>
+              <Form.Control
+                className="last_ref_name"
+                type="string"
+                min="0"
+                placeholder="Chen"
+                onChange={handleChange}
+                required
+                style={{
+                  marginBottom: '15px',
+                  borderColor: 'black',
+                  borderWidth: '2px',
+                }}
+              />
+            </div>
+
             <Form.Label style={{ marginBottom: '8px' }}>Number in Party</Form.Label>
             <Form.Control
               className="number_of_party"
@@ -110,6 +232,7 @@ function BookingForm({ obj = initialState }) {
               min="0"
               placeholder="Enter number in party"
               onChange={handleChange}
+              required
               style={{
                 marginBottom: '15px',
                 borderColor: 'black',
@@ -122,6 +245,7 @@ function BookingForm({ obj = initialState }) {
               className="check_in_date"
               type="date"
               onChange={handleChange}
+              required
               style={{
                 marginBottom: '15px',
                 borderColor: 'black',
@@ -134,6 +258,7 @@ function BookingForm({ obj = initialState }) {
               className="check_out_date"
               type="date"
               onChange={handleChange}
+              required
               style={{
                 marginBottom: '15px',
                 borderColor: 'black',
@@ -147,6 +272,7 @@ function BookingForm({ obj = initialState }) {
               type="number"
               min="0"
               onChange={handleChange}
+              required
               style={{
                 marginBottom: '15px',
                 borderColor: 'black',
