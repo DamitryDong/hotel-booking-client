@@ -51,6 +51,12 @@ export default function BookingCardModal({ bookingObj }) {
             <strong>Check-out:</strong> {bookingObj.check_out_date}
           </p>
           <p>
+            <strong>Event attending:</strong> {bookingObj.event}
+          </p>
+          <p>
+            <strong>Payment Status:</strong> {bookingObj.paid ? 'paid' : 'pending'}
+          </p>
+          <p>
             <strong>Rooms:</strong> {filteredRoomIds.length > 0 ? filteredRoomIds.join(', ') : 'No rooms found'}
           </p>
         </Modal.Body>

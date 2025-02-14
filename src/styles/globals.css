@@ -16,6 +16,12 @@
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.281); 
 }
 
+.navbardivforsticky{
+position: sticky;
+top: 2px;
+left: 2px;
+}
+
 .navbar-toggler:hover {
   background-color: #502d1b; 
 }
@@ -139,7 +145,6 @@ If you see this I hope you're having a great day!!⠀⠀
   grid-template-rows: repeat(4, 100px); 
   gap: 10px;
   padding: 20px;
-  background-color: #8d330655; 
   border-radius: 20px;
 }
 

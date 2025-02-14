@@ -40,7 +40,7 @@ export default function BookingHome() {
 
   return (
     <div>
-      <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%' }}>
+      <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%', backgroundColor: '#8d330636', margin: '2%', paddingTop: '2%', borderRadius: '10px' }}>
         <h2 style={{ paddingBottom: '2px', paddingTop: '2px', marginBottom: '2%', background: '#502d1b', width: '70%', borderRadius: '10px', color: 'white' }}> Bookings </h2>
 
         <div className="RoomsOnBookingInfo" style={{ width: '60%' }}>
