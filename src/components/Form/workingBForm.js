@@ -25,7 +25,6 @@ const initialState = {
   uid: '',
 };
 // THIS IS CALLED BY THE HANDLE SUBMIT FUNCTION AND WILL HANDLE MAKING A BOOKING ID IN THE ROOMS DATABASE
-// TODO: NEED a way to get the EVENTS to load as inputs, no negatives, and need to make room selection require.
 const HandleSelectedRoomsComponent = (id) => {
   const selectedRoomsElement = document.querySelector('.selectedRooms');
 
