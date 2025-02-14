@@ -24,24 +24,6 @@ const initialState = {
   event: '',
   uid: '',
 };
-// THIS IS CALLED BY THE HANDLE SUBMIT FUNCTION AND WILL HANDLE MAKING A BOOKING ID IN THE ROOMS DATABASE
-const HandleSelectedRoomsComponent = (id) => {
-  const selectedRoomsElement = document.querySelector('.selectedRooms');
-
-  if (selectedRoomsElement) {
-    const text = selectedRoomsElement.textContent;
-    const extractedIds = text.match(/\d+/g)?.map(Number) || []; // Extract numbers safely
-
-    extractedIds.forEach((roomId) => {
-      const payloadForRooms = {
-        id: roomId,
-        vacancy: false,
-        booking: id,
-      };
-      updateRooms(payloadForRooms);
-    });
-  } else console.log('no roomselected');
-};
 
 // THIS IS THE ACTUAL NEXTJS PAGE LOAD FUNCTION.
 function WorkingBookingForm({ obj = initialState }) {
@@ -56,6 +38,25 @@ function WorkingBookingForm({ obj = initialState }) {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  // THIS IS CALLED BY THE HANDLE SUBMIT FUNCTION AND WILL HANDLE MAKING A BOOKING ID IN THE ROOMS DATABASE
+  const HandleSelectedRoomsComponent = (id) => {
+    const selectedRoomsElement = document.querySelector('.selectedRooms');
+
+    if (selectedRoomsElement) {
+      const text = selectedRoomsElement.textContent;
+      const extractedIds = text.match(/\d+/g)?.map(Number) || []; // Extract numbers safely
+
+      extractedIds.forEach((roomId) => {
+        const payloadForRooms = {
+          id: roomId,
+          vacancy: false,
+          booking: id,
+        };
+        updateRooms(payloadForRooms);
+      });
+    } else console.log('no roomselected');
   };
 
   // THIS HANDLE SUBMIT TOOK ME A VERY LONG TIME PLEASE APPRECIATE
