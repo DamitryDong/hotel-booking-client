@@ -30,11 +30,13 @@ function RoomCards({ roomobj, roomsToChangeColor }) {
       <Card.Body className="roomCardBody">
         <div className="roomNumber">Room: {roomobj.room_number}</div>
         {roomobj.booking ? (
-          <div className="openClostStatusOnBookingOnRooms">
-            <strong>{roomobj.booking.id}</strong>
+          <div className="openClostStatusOnBookingOnRooms" style={{ fontSize: '0.5rem' }}>
+            {roomobj.booking.id}
           </div>
         ) : (
-          <div className="openClostStatusOnBookingOnRooms">-</div>
+          <div className="openClostStatusOnBookingOnRooms" style={{ fontSize: '0.5rem' }}>
+            -
+          </div>
         )}
       </Card.Body>
     </Card>

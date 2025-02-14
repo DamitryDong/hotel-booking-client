@@ -14,12 +14,14 @@
   padding-bottom: 10px ;
   background-color: #ffffff57; 
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.281); 
+  z-index: 10;
 }
 
 .navbardivforsticky{
 position: sticky;
 top: 2px;
 left: 2px;
+z-index: 10;
 }
 
 .navbar-toggler:hover {

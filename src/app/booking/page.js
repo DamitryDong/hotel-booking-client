@@ -7,6 +7,7 @@ import BookingCard from '../../components/BookingCards';
 import { getAllBookings } from '../../api/apiBookings';
 import { getAllCustomers } from '../../api/apiCustomers';
 import RoomPlanForShow from '../../components/RoomCardsForShow';
+import PieChartComponent from '../../components/pieChart';
 import { getAllCustomerJoinBookings } from '../../api/apiCBjointable';
 
 export default function BookingHome() {
@@ -43,8 +44,14 @@ export default function BookingHome() {
       <div className="text-center d-flex flex-column align-items-center" style={{ marginBottom: '2%', backgroundColor: '#8d330636', margin: '2%', paddingTop: '2%', borderRadius: '10px' }}>
         <h2 style={{ paddingBottom: '2px', paddingTop: '2px', marginBottom: '2%', background: '#502d1b', width: '70%', borderRadius: '10px', color: 'white' }}> Bookings </h2>
 
-        <div className="RoomsOnBookingInfo" style={{ width: '60%' }}>
-          <RoomPlanForShow onbookingDeleteTrigger={filteredItems} RoomToHightlight={RoomHighlighted} />
+        <div className="text-center d-flex flex-row" style={{ width: '100%' }}>
+          <div className="RoomsOnBookingInfo" style={{ width: '60%', marginLeft: '7%', marginRight: '1%' }}>
+            <RoomPlanForShow onbookingDeleteTrigger={filteredItems} RoomToHightlight={RoomHighlighted} />
+          </div>
+
+          <div className="piechart" style={{ width: '30%' }}>
+            <PieChartComponent />
+          </div>
         </div>
 
         <Form className="d-flex mb-3" style={{ maxWidth: '400px', width: '100%', marginTop: '1%' }}>
