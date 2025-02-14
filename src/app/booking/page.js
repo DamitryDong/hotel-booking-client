@@ -12,6 +12,7 @@ import { getAllCustomerJoinBookings } from '../../api/apiCBjointable';
 
 export default function BookingHome() {
   const [filteredItems, setFilteredItems] = useState([]);
+  const [BookingItems, setBookingItems] = useState([]);
   const [customerItems, setCustomerItems] = useState([]);
   const [customerBookingItem, setcustomerBookingItem] = useState([]);
   const [searchTheWord, setsearchTheWord] = useState();
@@ -19,6 +20,7 @@ export default function BookingHome() {
 
   useEffect(() => {
     getAllBookings().then((bookings) => setFilteredItems(bookings));
+    getAllBookings().then((bookings) => setBookingItems(bookings));
     getAllCustomers().then((customers) => setCustomerItems(customers));
     getAllCustomerJoinBookings().then((joinedBooking) => setcustomerBookingItem(joinedBooking));
   }, []);
@@ -50,7 +52,7 @@ export default function BookingHome() {
           </div>
 
           <div className="piechart" style={{ width: '30%' }}>
-            <PieChartComponent />
+            <PieChartComponent bookingItem={BookingItems} />
           </div>
         </div>
 
