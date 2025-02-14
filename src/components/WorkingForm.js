@@ -9,12 +9,12 @@ import PropTypes from 'prop-types';
 
 import RoomPlan from '@/components/RoomCards'; // Custom components
 
-import { updateRooms } from '../../api/apiRooms';
-import { createBooking } from '../../api/apiBookings'; // API functions
-import { createCustomer } from '../../api/apiCustomers';
-import { createCustomerJoinBookings } from '../../api/apiCBjointable';
-import { useAuth } from '../../utils/context/authContext'; // Context providers
-import SlideInRight from '../GsapRoomsSlide';
+import { updateRooms } from '../api/apiRooms';
+import { createBooking } from '../api/apiBookings'; // API functions
+import { createCustomer } from '../api/apiCustomers';
+import { createCustomerJoinBookings } from '../api/apiCBjointable';
+import { useAuth } from '../utils/context/authContext'; // Context providers
+import SlideInRight from './GsapRoomsSlide';
 
 const initialState = {
   number_of_party: '',

@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkingBookingForm from '../../../components/form/WorkingForm';
+import WorkingBookingForm from '../../../components/WorkingForm';
 
 // Create a reusable form to add/edit booking and render in this view
 export default function AddBooking() {
