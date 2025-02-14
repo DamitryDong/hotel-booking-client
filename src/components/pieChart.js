@@ -1,32 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
 import { PieChart, Pie, Tooltip, Cell } from 'recharts';
 
 const COLORS = ['rgba(6, 114, 29, 0.69)', 'rgb(146, 15, 15)', 'rgb(240, 1, 168)', 'rgb(76, 0, 255)'];
 
 export default function PieChartComponent({ bookingItem }) {
-  const [graphShown, setGraphShown] = useState('Select View');
+  // this gets the unique uid size so we can do the for loop to get exact amount sections
+  const uniqueUids = [...new Set(bookingItem.map((item) => item.uid))];
 
-  const uniqueUids = new Set(bookingItem.map((item) => item.uid)).size;
+  // Count occurrences of each UID
+  const uidCount = bookingItem.reduce((acc, item) => {
+    acc[item.uid] = (acc[item.uid] || 0) + 1;
+    return acc;
+  }, {});
 
-  const data = [];
-
-  for (let i = 1; i <= uniqueUids; i++) {
-    data.push({ name: i, value: 400 });
-  }
+  // Populate `data` array with what have
+  const data = uniqueUids.map((uid) => ({
+    name: uid,
+    value: uidCount[uid],
+  }));
 
   return (
     <div className="text-center d-flex flex-column align-items-center">
-      <h3>{graphShown}</h3>
-      <div className="text-center d-flex flex-row align-items-center" style={{ marginTop: '1.5%' }}>
-        <Button style={{ borderRadius: '0', borderRight: '0px', borderLeft: '0px' }} variant="outline-dark" onClick={() => setGraphShown('Room Occupancy')}>
-          Room
-        </Button>
-        <Button style={{ borderRadius: '0', borderLeft: '0px', borderRight: '0px' }} variant="outline-dark" onClick={() => setGraphShown('Booking Contributions')}>
-          Booking
-        </Button>
-      </div>
+      <h3>Booking Contributions</h3>
+
       <PieChart width={400} height={400}>
         <Pie data={data} outerRadius={180}>
           {data.map((entry, index) => (
