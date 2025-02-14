@@ -45,7 +45,7 @@ const HandleSelectedRoomsComponent = (id) => {
 };
 
 // THIS IS THE ACTUAL NEXTJS PAGE LOAD FUNCTION.
-function BookingForm({ obj = initialState }) {
+function WorkingBookingForm({ obj = initialState }) {
   const [formInput, setFormInput] = useState(obj);
 
   const router = useRouter();
@@ -312,7 +312,7 @@ function BookingForm({ obj = initialState }) {
   );
 }
 
-BookingForm.propTypes = {
+WorkingBookingForm.propTypes = {
   obj: PropTypes.shape({
     number_of_party: PropTypes.string,
     check_in_date: PropTypes.string,
@@ -323,4 +323,4 @@ BookingForm.propTypes = {
   }),
 };
 
-export default BookingForm;
+export default WorkingBookingForm;
