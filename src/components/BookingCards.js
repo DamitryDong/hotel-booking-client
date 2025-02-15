@@ -71,7 +71,7 @@ export default function BookingCard({ bookingObj, customerObj, JoinedObj, onDele
             {shownName1} <br /> {shownName2}
           </Card.Title>
           <Card.Text>Party Size ({bookingObj.number_of_party})</Card.Text>
-          <Button onClick={() => handleDelete(bookingObj.id)} variant="danger">
+          <Button onClick={() => handleDelete(bookingObj.id)} variant="dark">
             Delete
           </Button>
         </>

@@ -36,7 +36,7 @@ export default function BookingCardModal({ bookingObj, custName1 }) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="dark" onClick={handleShow}>
         Details
       </Button>
 

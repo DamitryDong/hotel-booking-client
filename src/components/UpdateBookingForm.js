@@ -33,13 +33,11 @@ export default function UpdateBookingForm({ bookingInfo }) {
     }));
   };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => setShow(!show);
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
+  const handleUpdate = () => {
     updateBooking(formInput).then(() => {
-      handleClose();
+      handleShow();
       router.push('/booking');
     });
   };
@@ -49,7 +47,7 @@ export default function UpdateBookingForm({ bookingInfo }) {
       <Button variant="primary" onClick={handleShow}>
         Make Changes
       </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleShow}>
         <Form onSubmit={handleUpdate} className="text-black">
           <h1>Update Booking</h1>
 
@@ -84,7 +82,7 @@ export default function UpdateBookingForm({ bookingInfo }) {
             Save Changes
           </Button>
         </Form>
-        <Button variant="primary" onClick={handleClose}>
+        <Button variant="primary" onClick={handleShow}>
           Cancel
         </Button>
       </Modal>
