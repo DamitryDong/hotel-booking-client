@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 
 import React, { useEffect, useState } from 'react';
@@ -70,11 +71,11 @@ export default function BookingCard({ bookingObj, customerObj, JoinedObj, onDele
             {shownName1} <br /> {shownName2}
           </Card.Title>
           <Card.Text>Party Size ({bookingObj.number_of_party})</Card.Text>
-          <Button onClick={() => handleDelete(bookingObj.id)} variant="danger">
+          <Button onClick={() => handleDelete(bookingObj.id)} variant="dark">
             Delete
           </Button>
         </>
-        <BookingCardModal bookingObj={bookingObj} />
+        <BookingCardModal bookingObj={bookingObj} custName1={shownName1} custName2={shownName2} />
       </Card.Body>
     </Card>
   );

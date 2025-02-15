@@ -61,7 +61,7 @@ const updateBooking = (payload) =>
       },
       body: JSON.stringify(payload),
     })
-      .then((response) => response.json())
+      .then((response) => response)
       .then((data) => resolve(data))
       .catch(reject);
   });
