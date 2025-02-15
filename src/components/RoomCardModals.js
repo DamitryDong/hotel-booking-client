@@ -30,11 +30,11 @@ function RoomModals({ roomobj }) {
             # {roomobj.room_number} -{' '}
             <span
               style={{
-                color: roomobj.vacancy ? '#28a745' : '#dc3545', // Professional green & red
+                color: roomobj.booking === null ? '#28a745' : '#dc3545', // Professional green & red
                 fontWeight: 'bold',
               }}
             >
-              {roomobj.vacancy ? 'Vacant' : 'Occupied'}
+              {roomobj.booking === null ? 'Vacant' : 'Occupied'}
             </span>
           </Modal.Title>
         </Modal.Header>
@@ -75,7 +75,7 @@ RoomModals.propTypes = {
     price: PropTypes.number,
     good_view: PropTypes.bool,
     smoking: PropTypes.bool,
-    booking_id: PropTypes.number,
+    booking: PropTypes.number,
     star_rating: PropTypes.number,
   }),
 };
