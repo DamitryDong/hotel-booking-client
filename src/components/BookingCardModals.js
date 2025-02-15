@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { getAllRooms } from '../api/apiRooms';
+import UpdateBookingForm from './UpdateBookingForm';
 
 export default function BookingCardModal({ bookingObj }) {
   const [show, setShow] = useState(false);
@@ -64,9 +65,7 @@ export default function BookingCardModal({ bookingObj }) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Update
-          </Button>
+          <UpdateBookingForm />
         </Modal.Footer>
       </Modal>
     </>
