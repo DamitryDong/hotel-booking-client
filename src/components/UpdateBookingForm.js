@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { useRouter } from 'next/navigation'; // Import useRouter
+import { updateBooking } from '../api/apiBookings';
 
-export default function UpdateBookingForm() {
+export default function UpdateBookingForm({ bookingInfo }) {
+  const router = useRouter(); // Initialize router
+
+  const checkInDateTime = bookingInfo.check_in_date;
+  const checkOutDateTime = bookingInfo.check_out_date;
+  const checkIndateOnly = checkInDateTime.split('T')[0];
+  const checkOutdateOnly = checkOutDateTime.split('T')[0];
+
   const initialState = {
-    number_of_party: '123',
-    check_in_date: '123',
-    check_out_date: '123',
-    paid: false,
-    event: '123',
-    uid: '',
+    id: bookingInfo.id,
+    number_of_party: bookingInfo.number_of_party,
+    check_in_date: checkIndateOnly,
+    check_out_date: checkOutdateOnly,
+    paid: bookingInfo.paid,
+    event: bookingInfo.event,
+    uid: bookingInfo.uid,
   };
 
   const [show, setShow] = useState(false);
@@ -22,18 +33,21 @@ export default function UpdateBookingForm() {
     }));
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    console.log('apsmcpoaoms');
-  };
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    updateBooking(formInput).then(() => {
+      handleClose();
+      router.push('/booking');
+    });
+  };
 
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Make Changes
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Form onSubmit={handleUpdate} className="text-black">
@@ -41,19 +55,19 @@ export default function UpdateBookingForm() {
 
           <Form.Group className="mb-3">
             <Form.Label>Number in Party</Form.Label>
-            <Form.Control className="number_of_party" type="number" min="0" placeholder="Enter number in party" value={formInput.number_of_party} onChange={handleUpdateChange} required />
+            <Form.Control name="number_of_party" type="number" min="0" placeholder="Enter number in party" value={formInput.number_of_party} onChange={handleUpdateChange} required />
 
             <Form.Label>Check-In</Form.Label>
-            <Form.Control className="check_in_date" type="date" value={formInput.check_in_date} onChange={handleUpdateChange} required />
+            <Form.Control name="check_in_date" type="date" value={formInput.check_in_date} onChange={handleUpdateChange} required />
 
             <Form.Label>Check-Out</Form.Label>
-            <Form.Control className="check_out_date" type="date" value={formInput.check_out_date} onChange={handleUpdateChange} required />
+            <Form.Control name="check_out_date" type="date" value={formInput.check_out_date} onChange={handleUpdateChange} required />
 
             <Form.Label>Events</Form.Label>
-            <Form.Control className="event" type="number" min="0" value={formInput.event} onChange={handleUpdateChange} required />
+            <Form.Control name="event" type="number" min="0" value={formInput.event} onChange={handleUpdateChange} required />
 
             <Form.Check
-              className="Paid"
+              name="paid"
               type="switch"
               label="Paid"
               checked={formInput.paid}
@@ -77,3 +91,15 @@ export default function UpdateBookingForm() {
     </>
   );
 }
+
+UpdateBookingForm.propTypes = {
+  bookingInfo: PropTypes.shape({
+    id: PropTypes.number,
+    number_of_party: PropTypes.string,
+    check_in_date: PropTypes.string,
+    check_out_date: PropTypes.string,
+    paid: PropTypes.bool,
+    event: PropTypes.string,
+    uid: PropTypes.string,
+  }),
+};

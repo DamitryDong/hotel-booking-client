@@ -75,7 +75,7 @@ export default function BookingCard({ bookingObj, customerObj, JoinedObj, onDele
             Delete
           </Button>
         </>
-        <BookingCardModal bookingObj={bookingObj} />
+        <BookingCardModal bookingObj={bookingObj} custName1={shownName1} custName2={shownName2} />
       </Card.Body>
     </Card>
   );

@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import { getAllRooms } from '../api/apiRooms';
 import UpdateBookingForm from './UpdateBookingForm';
 
-export default function BookingCardModal({ bookingObj }) {
+export default function BookingCardModal({ bookingObj, custName1 }) {
   const [show, setShow] = useState(false);
   const [filteredRoomIds, setFilteredRoomIds] = useState([]);
 
@@ -42,7 +42,7 @@ export default function BookingCardModal({ bookingObj }) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Customer first and last name</Modal.Title>
+          <Modal.Title>Main Contact: {custName1}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>
@@ -65,7 +65,7 @@ export default function BookingCardModal({ bookingObj }) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <UpdateBookingForm />
+          <UpdateBookingForm bookingInfo={bookingObj} />
         </Modal.Footer>
       </Modal>
     </>
